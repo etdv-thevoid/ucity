@@ -1160,7 +1160,7 @@ InputHandleModeWatch:
 
     ; If not, handle user input
 
-    ld      a,[joy_held]
+    ld      a,[joy_pressed]
     and     a,PAD_B
     jr      z,.not_b
 
@@ -1408,9 +1408,9 @@ InputHandleModeWatchFastMove:
 
     ; If not, handle user input
 
-    ld      a,[joy_held]
-    and     a,PAD_B
-    jr      nz,.not_b
+    ld      a,[joy_pressed]
+    and     a,PAD_A|PAD_B|PAD_SELECT|PAD_START
+    jr      z,.not_b
 
         call    bg_scroll_in_tile
         and     a,a
