@@ -726,7 +726,7 @@ GameStateMachineStateSet:: ; b = new state
         LONG_CALL   BuildSelectMenuShow
 
         call    CursorHide
-        call    CursorMoveToOrigin
+;        call    CursorMoveToOrigin
 
         ret
 
@@ -737,7 +737,7 @@ GameStateMachineStateSet:: ; b = new state
         LONG_CALL   Simulation_TransportAnimsHide
 
         call    CursorHide
-        call    CursorMoveToOrigin
+;        call    CursorMoveToOrigin
 
         xor     a,a
         ld      [status_bar_overlay_sprites_active],a
