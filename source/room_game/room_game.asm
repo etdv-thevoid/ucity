@@ -1161,23 +1161,23 @@ InputHandleModeWatch:
     ; If not, handle user input
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
-    jr      z,.not_b
+    and     a,PAD_SELECT
+    jr      z,.not_select
 
         call    bg_scroll_in_tile
         and     a,a
-        jr      nz,.skip_change_state_b
+        jr      nz,.skip_change_state_select
 
             ld      b,GAME_STATE_WATCH_FAST_MOVE
             call    GameStateMachineStateSet
             ret
 
-.skip_change_state_b:
+.skip_change_state_select:
 
         call    CursorDrift
         ret
 
-.not_b:
+.not_select:
 
     ld      a,[joy_pressed]
     and     a,PAD_START
@@ -1189,12 +1189,12 @@ InputHandleModeWatch:
 .not_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_SELECT
-    jr      z,.not_select
+    and     a,PAD_B
+    jr      z,.not_b
         ld      b,GAME_STATE_SELECT_BUILDING
         call    GameStateMachineStateSet
         ret
-.not_select:
+.not_b:
 
     call    CursorHandle ; returns a = 1 if bg has scrolled
     and     a,a
