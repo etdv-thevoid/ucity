@@ -885,16 +885,6 @@ GameStateMachineHandle::
 
 ;-------------------------------------------------------------------------------
 
-    DEF PAUSE_MENU_BUDGET    EQU 0
-    DEF PAUSE_MENU_BANK      EQU 1
-    DEF PAUSE_MENU_MINIMAPS  EQU 2
-    DEF PAUSE_MENU_GRAPHS    EQU 3
-    DEF PAUSE_MENU_STATS     EQU 4
-    DEF PAUSE_MENU_OPTIONS   EQU 5
-    DEF PAUSE_MENU_PAUSE     EQU 6
-    DEF PAUSE_MENU_SAVE_GAME EQU 7
-    DEF PAUSE_MENU_MAIN_MENU EQU 8
-
 PauseMenuHandleOption:
 
     cp      a,PAUSE_MENU_BUDGET
@@ -958,7 +948,7 @@ PauseMenuHandleOption:
         ; -------
 
         ld      a,[simulation_running]
-        and     a,a ; If minimap room is entered while the simulation is running
+        and     a,a                  ; If minimap room is entered while the simulation is running
         jr      z,.continue_minimaps ; bad things will happen.
         call    SFX_ErrorUI
         ret
@@ -1245,7 +1235,7 @@ InputHandleModeWatch:
 InputHandleModeEdit:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PAD_B|PAD_START|PAD_SELECT  ; Cancel edit mode
     jr      z,.not_b
 
         LONG_CALL   BuildSelectMenuHide
@@ -1270,15 +1260,15 @@ InputHandleModeEdit:
 ;        call    GameStateMachineStateSet
 ;        ret
 ;.not_start:
-
-    ld      a,[joy_pressed]
-    and     a,PAD_SELECT
-    jr      z,.not_select
-        call    BuildOverlayIconHide
-        ld      b,GAME_STATE_SELECT_BUILDING
-        call    GameStateMachineStateSet
-        ret
-.not_select:
+;
+;    ld      a,[joy_pressed]
+;    and     a,PAD_SELECT
+;    jr      z,.not_select
+;        call    BuildOverlayIconHide
+;        ld      b,GAME_STATE_SELECT_BUILDING
+;        call    GameStateMachineStateSet
+;        ret
+;.not_select:
 
     call    CursorHandle ; returns a = 1 if bg has scrolled
     and     a,a
