@@ -40,6 +40,7 @@
     DEF MINIMAP_SELECTION_POLLUTION          EQU 12
     DEF MINIMAP_SELECTION_HAPPINESS          EQU 13
 
+    DEF MINIMAP_SELECTION_MIN                EQU 0
     DEF MINIMAP_SELECTION_MAX                EQU 13
     ; There's no room for any other map with the current selection menu!
 
