@@ -75,10 +75,86 @@ GraphsDrawSelected::
 
 ;-------------------------------------------------------------------------------
 
+MACRO WRITE_B_TO_HL_VRAM ; Clobbers A and C
+    di ; critical section
+        xor     a,a
+        ldh     [rVBK],a
+        WAIT_SCREEN_BLANK ; Clobbers registers A and C
+        ld      [hl],b
+    ei ; end of critical section
+ENDM
+
+;-------------------------------------------------------------------------------
+
+GraphsUpdateLeftArrow:
+
+    push hl
+    push bc
+
+    ld      a,[graphs_selected]
+    cp      a,GRAPHS_SELECTION_MIN
+    jr      nz,.not_leftmost
+
+    ; Remove the left arrow
+    ld      hl,$9940
+    ld      b,0
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+    jr      .continue
+
+.not_leftmost
+
+    ; Restore the left arrow
+    ld      hl,$9940
+    ld      b,6
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+
+.continue
+
+    pop hl
+    pop bc
+
+    ret
+
+;-------------------------------------------------------------------------------
+
+GraphsUpdateRightArrow:
+
+    push hl
+    push bc
+
+    ld      a,[graphs_selected]
+    cp      a,GRAPHS_SELECTION_MAX
+    jr      nz,.not_rightmost
+
+    ; Remove the right arrow
+    ld      hl,$9953
+    ld      b,0
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+    jr      .continue
+
+.not_rightmost
+
+    ; Restore the right arrow
+    ld      hl,$9953
+    ld      b,4
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+
+.continue
+
+    pop hl
+    pop bc
+
+    ret
+
+;-------------------------------------------------------------------------------
+
 GraphsSelectGraph:: ; b = graph to select
 
     ld      a,b
     ld      [graphs_selected],a
+
+    call    GraphsUpdateLeftArrow
+    call    GraphsUpdateRightArrow
 
     ret
 
@@ -120,8 +196,8 @@ RoomGraphs::
 
     call    LoadTextPalette
 
-    ld      a,GRAPHS_SELECTION_POPULATION
-    ld      [graphs_selected],a
+    ld      b,GRAPHS_SELECTION_POPULATION
+    call    GraphsSelectGraph
 
     LONG_CALL   GraphsDrawSelected
 
