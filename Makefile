@@ -51,7 +51,7 @@ ASMFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.asm)))
 
 # List of include directories: All source and data folders.
 # A '/' is appended to the path.
-INCLUDES := $(foreach dir,$(SOURCE_ALL_DIRS),-i$(dir)/)
+INCLUDES := $(foreach dir,$(SOURCE_ALL_DIRS),-I$(dir)/)
 
 # Prepare object paths from source files.
 OBJ := $(ASMFILES:.asm=.obj)

@@ -56,8 +56,8 @@ SRAMCalculateChecksum: ; Returns HL = checksum of currently enabled SRAM bank
     ;    sum += data[i]
 
     ld      hl,$0000 ; Checksum accumulator
-    ld      de,SAV_CHECKSUM+2 ; pointer to start
-    ld      bc,$2000-(SAV_CHECKSUM+2-_SRAM) ; size to check
+    ld      de,SAV_CHECKSUM_END ; pointer to start
+    ld      bc,$2000-(SAV_CHECKSUM_END-_SRAM) ; size to check
 
 .loop_checksum:
 
@@ -93,12 +93,11 @@ SRAMCalculateChecksum: ; Returns HL = checksum of currently enabled SRAM bank
 ; checksum.
 SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
-    ld      a,b
-
-    ld      [rRAMB],a ; switch to bank
-
     ld      a,CART_RAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; First, check magic string
 
@@ -146,15 +145,14 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
 CityMapSave:: ; b = SRAM BANK to save the data to, doesn't check limits
 
-    ld      a,b
-
     ; Enable SRAM access
     ; ------------------
 
-    ld      [rRAMB],a ; switch to bank
-
     ld      a,CART_RAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; Clear bank
     ; ----------
@@ -314,15 +312,14 @@ SRAMMapLoad:: ; b = index to load from. This function doesn't check bank limits.
     and     a,a
     ret     z ; if 0, just return!
 
-    ld      a,b
-
     ; Enable SRAM access
     ; ------------------
 
-    ld      [rRAMB],a ; switch to bank
-
     ld      a,CART_RAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; Load map
     ; --------

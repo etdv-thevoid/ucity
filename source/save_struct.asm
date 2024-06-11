@@ -38,9 +38,13 @@
 
 ; Each SRAM bank can hold information for one city.
 
+SAV_START_PADDING:: DS 1
+SAV_BANK_NUMBER:: DS 1
+
 ; Magic string must always be first, checksum second.
 SAV_MAGIC_STRING:: DS MAGIC_STRING_LEN
 SAV_CHECKSUM::     DS 2 ; LSB first
+SAV_CHECKSUM_END::
 
 ; General information
 
