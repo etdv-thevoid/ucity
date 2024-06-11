@@ -147,20 +147,23 @@ wait_vbl:
 
     NINTENDO_LOGO
 
-    ;        0123456789ABC
-    DB      "MICROCITY    " ; Note: Don't include charmaps in this file!
-    DW      $0000
-    DB      CART_COMPATIBLE_GBC ; GBC flag
-    DB      $00,$00,$00 ;Super Game Boy
-    DB      CART_ROM_MBC5_RAM_BAT ;CARTTYPE (MBC5+RAM+BATTERY)
-    DB      $00         ; ROM Size
-    DB      CART_SRAM_128KB ; RAM Size (16 banks)
+    ;        0123456789A
+    DB      "MICROCITY  " ; Title
+    ;        BCDE
+    DB      "BTCY"        ; Manufacturer
 
-    DB      $01 ;Destination (0 = Japan, 1 = Non Japan)
-    DB      $00 ;Manufacturer
-    DB      $00 ;Version
-    DB      $00 ;Complement header check
-    DW      $0000 ;Checksum
+    DB      CART_COMPATIBLE_GBC
+    DB      "00" ; New Licensee Code
+    DB      CART_INDICATOR_GB
+    DB      CART_ROM_MBC5_RAM_BAT
+    DB      CART_ROM_128KB
+    DB      CART_SRAM_128KB
+
+    DB      CART_DEST_NON_JAPANESE
+    DB      $33   ; Old Licensee Code
+    DB      $0C   ; ROM Version
+    DB      $00   ; Header Checksum
+    DW      $0000 ; ROM Checksum
 
 ;###############################################################################
 ;#                                                                             #
