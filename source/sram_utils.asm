@@ -44,7 +44,7 @@ sram_bank_status:: DS SRAM_BANK_NUM_MAX ; 0 = not avail. 1 = ok, 2 = empty/bad
 ; Clears one SRAM bank. Call SRAM_CheckIntegrity after this!
 SRAM_ClearBank:: ; B = bank to clear
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,b
@@ -56,7 +56,7 @@ SRAM_ClearBank:: ; B = bank to clear
     xor     a,a
     ld      [SAV_MAGIC_STRING],a
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret
@@ -71,7 +71,7 @@ SRAM_PowerOnCheck::
     ; checksums should be checked first, as they only require reading data from
     ; the cartridge.
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ; Write bank number from 15 to 0 to SRAM banks or'ed with $C0
@@ -106,7 +106,7 @@ SRAM_PowerOnCheck::
     ld      [sram_num_available_banks],a
 
 .end_check:
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ; Now that we know how many banks there are, check data

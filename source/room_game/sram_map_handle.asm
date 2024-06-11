@@ -93,7 +93,7 @@ SRAMCalculateChecksum: ; Returns HL = checksum of currently enabled SRAM bank
 ; checksum.
 SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,b
@@ -127,7 +127,7 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
     ; End. HL should still hold the checksum!
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ld      a,1 ; return A = 1, HL = calculated checksum
@@ -135,7 +135,7 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
 .exit_fail:
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     xor     a,a ; return A = 0
@@ -148,7 +148,7 @@ CityMapSave:: ; b = SRAM BANK to save the data to, doesn't check limits
     ; Enable SRAM access
     ; ------------------
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,b
@@ -290,7 +290,7 @@ CityMapSave:: ; b = SRAM BANK to save the data to, doesn't check limits
     ; Disable SRAM access
     ; -------------------
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret
@@ -315,7 +315,7 @@ SRAMMapLoad:: ; b = index to load from. This function doesn't check bank limits.
     ; Enable SRAM access
     ; ------------------
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,b
@@ -427,7 +427,7 @@ SRAMMapLoad:: ; b = index to load from. This function doesn't check bank limits.
     ; Disable SRAM access
     ; -------------------
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret

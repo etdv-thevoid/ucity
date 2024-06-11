@@ -188,7 +188,7 @@ SaveMenuPrintSRAMBankInfo:
     ; First, read data from SRAM and save to the stack to do the copy to VRAM
     ; with SRAM disabled, which is safer.
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,c ; SRAM
@@ -216,7 +216,7 @@ SaveMenuPrintSRAMBankInfo:
     ld      [de],a
     inc     de
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ldh     [rRAMG],a
 
     pop     bc
