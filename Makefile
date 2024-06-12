@@ -28,9 +28,9 @@ EXT  := gbc
 EMULATOR := wine ./tools/bgb.exe
 
 ################################################################################
-##         Source, data and include folders - subfolders are included         ##
+##                All source folders - subfolders are included                ##
 
-SOURCE := source data
+SOURCE := source audio bin includes
 
 ################################################################################
 
