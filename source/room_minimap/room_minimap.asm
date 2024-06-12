@@ -57,7 +57,7 @@ MINIMAP_BG_MAP:
     DEF MINIMAP_HEIGHT EQU 18
 
 MINIMAP_TILES:
-    INCBIN "minimap_tiles.bin"
+    INCBIN "minimap_tiles.2bpp"
 .e:
 
     DEF MINIMAP_TILE_NUM EQU ((.e-MINIMAP_TILES)/16)

@@ -35,7 +35,7 @@
 
 TextTilesData:
 .s:
-    INCBIN "text_tiles.bin"
+    INCBIN "text_tiles.2bpp"
 .e:
 
     DEF TextTilesNumber EQU (.e - .s) / (8*8/4)

@@ -50,7 +50,7 @@ title_blink_state:      DS  1
 ;-------------------------------------------------------------------------------
 
 TITLE_SCREEN_TILES:
-    INCBIN "title_screen_tiles.bin"
+    INCBIN "title_screen_tiles.2bpp"
 
 TITLE_SCREEN_MAP:
     INCBIN "tilte_screen_map.bin"

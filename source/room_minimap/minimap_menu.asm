@@ -53,7 +53,7 @@ MINIMAP_MENU_MAP:
     DEF MINIMAP_MENU_HEIGHT EQU 2
 
 MINIMAP_MENU_TILES:
-    INCBIN "minimap_menu_tiles.bin"
+    INCBIN "minimap_menu_tiles.2bpp"
 .e:
 
     DEF MINIMAP_MENU_NUM_TILES EQU (.e-MINIMAP_MENU_TILES)/16

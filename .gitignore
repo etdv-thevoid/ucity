@@ -1,10 +1,11 @@
-ucity.sav
-ucity.gbc
-ucity.sym
-ucity.map
-ucity_compat.sav
-ucity_compat.gbc
 *.obj
+*.2bpp
+
+*.gbc
+*.sav
+*.map
+*.sym
+
 tools/mod2gbt/mod2gbt
 tools/compress/extractbit3
 tools/compress/filediff
