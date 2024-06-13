@@ -29,6 +29,7 @@
     DEF GRAPHS_SELECTION_RCI        EQU 1
     DEF GRAPHS_SELECTION_MONEY      EQU 2
 
+    DEF GRAPHS_SELECTION_MIN        EQU 0
     DEF GRAPHS_SELECTION_MAX        EQU 2
 
 ;-------------------------------------------------------------------------------
