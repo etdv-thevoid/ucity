@@ -60,35 +60,37 @@ SOURCE_ALL_DIRS := $(sort $(shell find $(SOURCE) -type d -print))
 INCLUDES := $(foreach dir,$(SOURCE_ALL_DIRS),-I$(dir)/)
 
 # All files with extension .asm
-ASMFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.asm)))
+ASM_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.asm)))
 
-# All files with extension .tilemap and/or .attrmap
-MAPFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.tilemap)))
-MAPFILES += $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.attrmap)))
+# All files with extension .tilemap
+SCENARIO_TILEMAP_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.tilemap)))
+
+# All files with extension .attrmap
+SCENARIO_ATTRMAP_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.attrmap)))
 
 # All files with extension .png
-PNGFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.png)))
+PNG_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.png)))
 
 # All files with extension .c
-TOOLFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.c)))
+TOOL_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.c)))
 
 ################################################################################
 ##                                Build Objects                               ##
 
 BIN := $(NAME).$(EXT)
 
-# Prepare .obj paths from source files
-OBJ := $(ASMFILES:.asm=.obj)
+# Prepare object paths from source files
+OBJ := $(ASM_FILES:.asm=.obj)
 
 # Prepare .rle paths from source files
-RLE := $(MAPFILES:.tilemap=_tilemap.rle)
-RLE += $(MAPFILES:.attrmap=_attrmap.rle)
+RLE := $(SCENARIO_TILEMAP_FILES:.tilemap=_tilemap.rle)
+RLE += $(SCENARIO_ATTRMAP_FILES:.attrmap=_attrmap.rle)
 
 # Prepare .*bpp paths from source files
-BPP := $(PNGFILES:.png=.2bpp)
+2BPP := $(PNG_FILES:.png=.2bpp)
 
 # Prepare .o paths from source files
-TOOLS := $(TOOLFILES:.c=.o)
+TOOLS := $(TOOL_FILES:.c=.o)
 
 ################################################################################
 ##                                Make Targets                                ##
@@ -102,13 +104,21 @@ rom: $(BIN)
 tools: $(TOOLS)
 
 tidy: 
-	@rm -f $(RLE) $(BPP) $(OBJ)
+	@rm -f $(2BPP) $(RLE) $(OBJ)
 
 clean: tidy
 	@rm -f $(TOOLS) $(BIN) $(NAME).sym $(NAME).map
 
 run: rom
 	$(EMULATOR) $(BIN)
+
+################################################################################
+
+TOOLS_OPTS :=
+
+%.o: %.c
+	@echo gcc $@
+	@gcc $(TOOLS_OPTS) -o $@ $<
 
 ################################################################################
 
@@ -132,12 +142,22 @@ GFX_OPTS :=
 MAP_OPTS :=
 
 %_tilemap.rle: %.tilemap
-	@echo compress $(MAP_OPTS) $@
-	@./tools/compress_map.sh $(MAP_OPTS) -o $@ $<
+	@echo cp -f $< $@
+	@cp -f $< $@
+	@echo filediff.o $@
+	@./tools/compress/filediff.o $@ $@
+	@echo rle.o -e $@
+	@./tools/compress/rle.o -e $@
 
 %_attrmap.rle: %.attrmap
-	@echo compress $(MAP_OPTS) $@
-	@./tools/compress_map.sh $(MAP_OPTS) -o $@ $<
+	@echo cp -f $< $@
+	@cp -f $< $@
+	@echo extractbit3.o $@
+	@./tools/compress/extractbit3.o $@ $@
+	@echo filediff.o $@
+	@./tools/compress/filediff.o $@ $@
+	@echo rle.o -e $@
+	@./tools/compress/rle.o -e $@
 
 ################################################################################
 
@@ -154,7 +174,7 @@ PAD := 0xFF
 LINK_OPTS := -p $(PAD) -m $(NAME).map -n $(NAME).sym
 FIX_OPTS := -p $(PAD) -v
 
-$(BIN): $(BPP) $(OBJ)
+$(BIN): $(2BPP) $(RLE) $(OBJ)
 	@echo rgblink $(BIN)
 	@$(RGBLINK) $(LINK_OPTS) -o $(BIN) $(OBJ)
 	@echo rgbfix $(BIN)
