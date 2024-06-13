@@ -52,7 +52,8 @@ text_input_exit:    DS 1 ; set to 1 to exit
 ;-------------------------------------------------------------------------------
 
 TEXT_INPUT_BG_MAP::
-    INCBIN  "text_input_bg_map.bin"
+    INCBIN  "text_input_bg_map.tilemap"
+    INCBIN  "text_input_bg_map.attrmap"
 
 ;-------------------------------------------------------------------------------
 

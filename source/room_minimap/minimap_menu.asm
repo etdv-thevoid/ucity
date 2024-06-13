@@ -47,7 +47,8 @@ minimap_cursor_y_offset_countdown: DS 1 ; frames to move
 ;-------------------------------------------------------------------------------
 
 MINIMAP_MENU_MAP:
-    INCBIN "minimap_menu_map.bin"
+    INCBIN "minimap_menu_map.tilemap"
+    INCBIN "minimap_menu_map.attrmap"
 
     DEF MINIMAP_MENU_WIDTH  EQU 32
     DEF MINIMAP_MENU_HEIGHT EQU 2

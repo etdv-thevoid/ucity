@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ################################################################################
-##                                ROM name                                    ##
+##                                ROM Name                                    ##
 
 NAME := ucity
 EXT  := gbc
@@ -25,12 +25,17 @@ EXT  := gbc
 ################################################################################
 ##               Command to run resulting ROM in an emulator                  ##
 
-EMULATOR := wine ./tools/bgb.exe
-
-################################################################################
-##                All source folders - subfolders are included                ##
-
-SOURCE := source audio bin images includes
+ifeq (,$(shell which bgb))
+EMULATOR := bgb
+else ifeq (,$(shell which gambatte))
+EMULATOR := gambatte
+else ifeq (,$(shell which sameboy))
+EMULATOR := sameboy
+else ifeq (,$(shell which mgba))
+EMULATOR := mgba
+else
+EMULATOR :=
+endif
 
 ################################################################################
 ## RGBDS can be made to point at a specific folder with the binaries of RGBDS ##
@@ -41,74 +46,118 @@ RGBFIX  := $(RGBDS)rgbfix
 RGBGFX  := $(RGBDS)rgbgfx
 
 ################################################################################
+##                All source folders - subfolders are included                ##
 
-BIN := $(NAME).$(EXT)
-COMPAT_BIN := $(NAME)_compat.$(EXT)
+SOURCE := source assets audio images includes tools
+
+################################################################################
+##                                 Build Paths                                ##
 
 # List of relative paths to all folders and subfolders with code or data.
 SOURCE_ALL_DIRS := $(sort $(shell find $(SOURCE) -type d -print))
 
-# List of include directories: All source and data folders.
-# A '/' is appended to the path.
+# List of include directories; '/' is appended to the path.
 INCLUDES := $(foreach dir,$(SOURCE_ALL_DIRS),-I$(dir)/)
 
-# All files with extension asm are assembled.
+# All files with extension .asm
 ASMFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.asm)))
 
-# Prepare object paths from source files.
-OBJ := $(ASMFILES:.asm=.obj)
+# All files with extension .tilemap and/or .attrmap
+MAPFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.tilemap)))
+MAPFILES += $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/scenario*.attrmap)))
 
-# All files with extension png are converted.
+# All files with extension .png
 PNGFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.png)))
 
-# Prepare 2bpp paths from source files.
-2BPP := $(PNGFILES:.png=.2bpp)
+# All files with extension .c
+TOOLFILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.c)))
+
+################################################################################
+##                                Build Objects                               ##
+
+BIN := $(NAME).$(EXT)
+
+# Prepare .obj paths from source files
+OBJ := $(ASMFILES:.asm=.obj)
+
+# Prepare .rle paths from source files
+RLE := $(MAPFILES:.tilemap=_tilemap.rle)
+RLE += $(MAPFILES:.attrmap=_attrmap.rle)
+
+# Prepare .*bpp paths from source files
+BPP := $(PNGFILES:.png=.2bpp)
+
+# Prepare .o paths from source files
+TOOLS := $(TOOLFILES:.c=.o)
 
 ################################################################################
 ##                                Make Targets                                ##
 
-.PHONY : all rebuild clean run
+.PHONY : all rom tools tidy clean run
 
-all: $(BIN) $(COMPAT_BIN)
+all: tools rom
 
-rebuild:
-	@make -B
-	@rm -f $(2BPP) $(OBJ)
+rom: $(BIN)
 
-run: $(BIN)
+tools: $(TOOLS)
+
+tidy: 
+	@rm -f $(RLE) $(BPP) $(OBJ)
+
+clean: tidy
+	@rm -f $(TOOLS) $(BIN) $(NAME).sym $(NAME).map
+
+run: rom
 	$(EMULATOR) $(BIN)
-
-clean:
-	@echo rm $(2BPP) $(OBJ) $(BIN) $(COMPAT_BIN) $(NAME).sym $(NAME).map
-	@rm -f $(2BPP) $(OBJ) $(BIN) $(COMPAT_BIN) $(NAME).sym $(NAME).map
 
 ################################################################################
 
-images/build_select_sprites.2bpp: GFX_OPTS += -x 4
-images/graphs_menu_tiles.2bpp: GFX_OPTS += -x 3
-images/minimap_menu_tiles.2bpp: GFX_OPTS += -x 3
-images/text_tiles.2bpp: GFX_OPTS += -x 2
+GFX_OPTS :=
+
+%/build_select_sprites.2bpp: GFX_OPTS += -x 4
+%/graphs_menu_tiles.2bpp: GFX_OPTS += -x 3
+%/minimap_menu_tiles.2bpp: GFX_OPTS += -x 3
+%/text_tiles.2bpp: GFX_OPTS += -x 2
 
 %.2bpp: %.png
 	@echo rgbgfx $(GFX_OPTS) $@
-	@$(RGBGFX) $(GFX_OPTS) -d 2 -o $@ $<
+	@$(RGBGFX) $(GFX_OPTS) -o $@ $<
 
-# TODO: Remove the -h when RGBASM is updated to remove it
-%.obj : %.asm
-	@echo rgbasm $@
-	@$(RGBASM) $(INCLUDES) -h -E -o $@ $<
+%.1bpp: %.png
+	@echo rgbgfx $(GFX_OPTS) -d 1 $@
+	@$(RGBGFX) $(GFX_OPTS) -d 1 -o $@ $<
 
 ################################################################################
 
-$(BIN): $(2BPP) $(OBJ)
-	@echo rgblink $(BIN)
-	@$(RGBLINK) -o $(BIN) -p 0xFF -m $(NAME).map -n $(NAME).sym $(OBJ)
-	@echo rgbfix $(BIN)
-	@$(RGBFIX) -p 0xFF -v $(BIN)
+MAP_OPTS :=
 
-$(COMPAT_BIN): $(2BPP) $(BIN)
-	@echo rgbfix $(COMPAT_BIN)
-	@cp $(BIN) $(COMPAT_BIN)
-	@$(RGBFIX) -v -O -r 3 $(COMPAT_BIN)
+%_tilemap.rle: %.tilemap
+	@echo compress $(MAP_OPTS) $@
+	@./tools/compress_map.sh $(MAP_OPTS) -o $@ $<
+
+%_attrmap.rle: %.attrmap
+	@echo compress $(MAP_OPTS) $@
+	@./tools/compress_map.sh $(MAP_OPTS) -o $@ $<
+
+################################################################################
+
+# TODO: Remove the -h when RGBASM is updated to remove it
+ASM_OPTS := -h -E
+
+%.obj: %.asm
+	@echo rgbasm $(ASM_OPTS) $@
+	@$(RGBASM) $(INCLUDES) $(ASM_OPTS) -o $@ $<
+
+################################################################################
+
+PAD := 0xFF
+LINK_OPTS := -p $(PAD) -m $(NAME).map -n $(NAME).sym
+FIX_OPTS := -p $(PAD) -v
+
+$(BIN): $(BPP) $(OBJ)
+	@echo rgblink $(BIN)
+	@$(RGBLINK) $(LINK_OPTS) -o $(BIN) $(OBJ)
+	@echo rgbfix $(BIN)
+	@$(RGBFIX) $(FIX_OPTS) $(BIN)
 
 ################################################################################

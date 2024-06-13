@@ -1,14 +1,23 @@
+# Ignore all files with no extension
+*
+!*/
+!*.*
+
+# Do not ignore license or makefile
+!license
+!makefile
+
+# Ignore C objects
+*.o
+
+# Ignore RGBDS objects
 *.obj
 *.2bpp
+*.1bpp
+*.rle
 
+# Ignore ROM objects
 *.gbc
 *.sav
 *.map
 *.sym
-
-tools/mod2gbt/mod2gbt
-tools/compress/extractbit3
-tools/compress/filediff
-tools/compress/rle
-tools/gbmb-1.8/gbmb.ini
-tools/gbtd-2.2/gbtd.ini

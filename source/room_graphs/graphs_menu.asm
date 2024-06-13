@@ -47,7 +47,8 @@ graphs_cursor_y_offset_countdown: DS 1 ; frames to move
 ;-------------------------------------------------------------------------------
 
 GRAPHS_MENU_MAP:
-    INCBIN "graphs_menu_map.bin"
+    INCBIN "graphs_menu_map.tilemap"
+    INCBIN "graphs_menu_map.attrmap"
 
     DEF GRAPHS_MENU_WIDTH  EQU 32
     DEF GRAPHS_MENU_HEIGHT EQU 2

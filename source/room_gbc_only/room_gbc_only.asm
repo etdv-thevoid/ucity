@@ -30,7 +30,8 @@
 ;-------------------------------------------------------------------------------
 
 ONLY_FOR_GBC_BG_MAP:
-    INCBIN "only_for_gbc_bg_map.bin"
+    INCBIN "only_for_gbc_bg_map.tilemap"
+    INCBIN "only_for_gbc_bg_map.attrmap"
 
     DEF ONLY_FOR_GBC_WIDTH  EQU 20
     DEF ONLY_FOR_GBC_HEIGHT EQU 18

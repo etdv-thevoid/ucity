@@ -55,10 +55,12 @@ bank_room_exit:  DS 1 ; set to 1 to exit room
 ;-------------------------------------------------------------------------------
 
 BANK_OFFER_MENU_BG_MAP:
-    INCBIN "bank_offer_menu_bg_map.bin"
+    INCBIN "bank_offer_menu_bg_map.tilemap"
+    INCBIN "bank_offer_menu_bg_map.attrmap"
 
 BANK_REPAY_MENU_BG_MAP:
-    INCBIN "bank_repay_menu_bg_map.bin"
+    INCBIN "bank_repay_menu_bg_map.tilemap"
+    INCBIN "bank_repay_menu_bg_map.attrmap"
 
     DEF BANK_MENU_WIDTH  EQU 20
     DEF BANK_MENU_HEIGHT EQU 18

@@ -48,7 +48,8 @@ scenario_select_map_selection:: DS 1 ; $FF for invalid value
 ;-------------------------------------------------------------------------------
 
 SCENARIO_SELECT_BG_MAP:
-    INCBIN "map_scenario_select_bg_map.bin"
+    INCBIN "map_scenario_select_bg_map.tilemap"
+    INCBIN "map_scenario_select_bg_map.attrmap"
 
     DEF SCENARIO_SELECT_WIDTH  EQU 20
     DEF SCENARIO_SELECT_HEIGHT EQU 18

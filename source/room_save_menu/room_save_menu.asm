@@ -57,10 +57,12 @@ save_menu_select_any: DS 1
 ;-------------------------------------------------------------------------------
 
 SAVE_MENU_BG_MAP::
-    INCBIN  "save_menu_map.bin"
+    INCBIN  "save_menu_bg_map.tilemap"
+    INCBIN  "save_menu_bg_map.attrmap"
 
 SAVE_MENU_ERROR_BG_MAP::
-    INCBIN  "save_menu_error_map.bin"
+    INCBIN  "save_menu_error_bg_map.tilemap"
+    INCBIN  "save_menu_error_bg_map.attrmap"
 
 ;-------------------------------------------------------------------------------
 

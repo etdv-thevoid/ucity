@@ -49,7 +49,8 @@ gen_map_selection: DS 1
 ;-------------------------------------------------------------------------------
 
 GEN_MAP_BG_MAP:
-    INCBIN "map_gen_minimap_bg_map.bin"
+    INCBIN "map_gen_minimap_bg_map.tilemap"
+    INCBIN "map_gen_minimap_bg_map.attrmap"
 
     DEF GEN_MAP_MENU_WIDTH  EQU 20
     DEF GEN_MAP_MENU_HEIGHT EQU 18
