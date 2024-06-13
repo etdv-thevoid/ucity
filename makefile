@@ -25,13 +25,13 @@ EXT  := gbc
 ################################################################################
 ##               Command to run resulting ROM in an emulator                  ##
 
-ifeq (,$(shell which bgb))
+ifneq (,$(shell which bgb))
 EMULATOR := bgb
-else ifeq (,$(shell which gambatte))
+else ifneq (,$(shell which gambatte))
 EMULATOR := gambatte
-else ifeq (,$(shell which sameboy))
+else ifneq (,$(shell which sameboy))
 EMULATOR := sameboy
-else ifeq (,$(shell which mgba))
+else ifneq (,$(shell which mgba))
 EMULATOR := mgba
 else
 EMULATOR :=
