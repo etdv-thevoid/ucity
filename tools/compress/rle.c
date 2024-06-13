@@ -65,12 +65,11 @@ int main(int argc, char **argv) {
   int cmd;
   int arg;
 
-  Title();
-
   if (argc < 2) Usage();
   if      (!strcmp(argv[1], "-d")) cmd = CMD_DECODE;
   else if (!strcmp(argv[1], "-e")) cmd = CMD_CODE_30;
-  else                              EXIT("Command not supported\n");
+  else if (!strcmp(argv[1], "-v")) Title();
+  else                             EXIT("Command not supported\n");
   if (argc < 3) EXIT("Filename not specified\n");
 
   switch (cmd) {
@@ -84,14 +83,12 @@ int main(int argc, char **argv) {
       break;
   }
 
-  printf("\nDone\n");
-
   return(0);
 }
 
 /*----------------------------------------------------------------------------*/
 void Title(void) {
-  printf(
+  EXIT(
     "\n"
     "RLE - (c) CUE 2011\n"
     "RLE coding for Nintendo GBA/DS\n"
@@ -107,6 +104,7 @@ void Usage(void) {
     "command:\n"
     "  -d ... decode 'filename'\n"
     "  -e ... encode 'filename'\n"
+    "  -v ... version\n"
     "\n"
     "* multiple filenames and wildcards are permitted\n"
     "* the original file is overwritten with the new file\n"

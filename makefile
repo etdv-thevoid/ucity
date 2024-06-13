@@ -116,9 +116,12 @@ run: rom
 
 TOOLS_OPTS :=
 
+%/gen_build_prob.o: TOOLS_OPTS += -lm
+%/gen_circle.o: TOOLS_OPTS += -lm
+%/gen_mask.o: TOOLS_OPTS += -lm
+
 %.o: %.c
-	@echo gcc $@
-	@gcc $(TOOLS_OPTS) -o $@ $<
+	gcc $< -o $@ $(TOOLS_OPTS)
 
 ################################################################################
 
@@ -130,12 +133,7 @@ GFX_OPTS :=
 %/text_tiles.2bpp: GFX_OPTS += -x 2
 
 %.2bpp: %.png
-	@echo rgbgfx $(GFX_OPTS) $@
-	@$(RGBGFX) $(GFX_OPTS) -o $@ $<
-
-%.1bpp: %.png
-	@echo rgbgfx $(GFX_OPTS) -d 1 $@
-	@$(RGBGFX) $(GFX_OPTS) -d 1 -o $@ $<
+	$(RGBGFX) $< -o $@ $(GFX_OPTS)
 
 ################################################################################
 
@@ -150,7 +148,6 @@ MAP_OPTS :=
 	@./tools/compress/rle.o -e $@
 
 %_attrmap.rle: %.attrmap
-	@echo cp -f $< $@
 	@cp -f $< $@
 	@echo extractbit3.o $@
 	@./tools/compress/extractbit3.o $@ $@
@@ -165,8 +162,8 @@ MAP_OPTS :=
 ASM_OPTS := -h -E
 
 %.obj: %.asm
-	@echo rgbasm $(ASM_OPTS) $@
-	@$(RGBASM) $(INCLUDES) $(ASM_OPTS) -o $@ $<
+	@echo rgbasm $< $(ASM_OPTS) -o $@
+	@$(RGBASM) $< $(INCLUDES) $(ASM_OPTS) -o $@
 
 ################################################################################
 
@@ -175,9 +172,8 @@ LINK_OPTS := -p $(PAD) -m $(NAME).map -n $(NAME).sym
 FIX_OPTS := -p $(PAD) -v
 
 $(BIN): $(2BPP) $(RLE) $(OBJ)
-	@echo rgblink $(BIN)
+	@echo rgblink $(LINK_OPTS) -o $(BIN)
 	@$(RGBLINK) $(LINK_OPTS) -o $(BIN) $(OBJ)
-	@echo rgbfix $(BIN)
-	@$(RGBFIX) $(FIX_OPTS) $(BIN)
+	$(RGBFIX) $(FIX_OPTS) $(BIN)
 
 ################################################################################
