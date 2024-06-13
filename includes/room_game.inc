@@ -99,6 +99,18 @@ ENDM
 
 ;-------------------------------------------------------------------------------
 
+    DEF PAUSE_MENU_BUDGET    EQU 0
+    DEF PAUSE_MENU_BANK      EQU 1
+    DEF PAUSE_MENU_MINIMAPS  EQU 2
+    DEF PAUSE_MENU_GRAPHS    EQU 3
+    DEF PAUSE_MENU_STATS     EQU 4
+    DEF PAUSE_MENU_OPTIONS   EQU 5
+    DEF PAUSE_MENU_PAUSE     EQU 6
+    DEF PAUSE_MENU_SAVE_GAME EQU 7
+    DEF PAUSE_MENU_MAIN_MENU EQU 8
+
+;-------------------------------------------------------------------------------
+
     DEF CLASS_VILLAGE    EQU 0
     DEF CLASS_TOWN       EQU 1
     DEF CLASS_CITY       EQU 2

@@ -726,7 +726,7 @@ GameStateMachineStateSet:: ; b = new state
         LONG_CALL   BuildSelectMenuShow
 
         call    CursorHide
-        call    CursorMoveToOrigin
+;        call    CursorMoveToOrigin
 
         ret
 
@@ -737,7 +737,7 @@ GameStateMachineStateSet:: ; b = new state
         LONG_CALL   Simulation_TransportAnimsHide
 
         call    CursorHide
-        call    CursorMoveToOrigin
+;        call    CursorMoveToOrigin
 
         xor     a,a
         ld      [status_bar_overlay_sprites_active],a
@@ -885,16 +885,6 @@ GameStateMachineHandle::
 
 ;-------------------------------------------------------------------------------
 
-    DEF PAUSE_MENU_BUDGET    EQU 0
-    DEF PAUSE_MENU_BANK      EQU 1
-    DEF PAUSE_MENU_MINIMAPS  EQU 2
-    DEF PAUSE_MENU_GRAPHS    EQU 3
-    DEF PAUSE_MENU_STATS     EQU 4
-    DEF PAUSE_MENU_OPTIONS   EQU 5
-    DEF PAUSE_MENU_PAUSE     EQU 6
-    DEF PAUSE_MENU_SAVE_GAME EQU 7
-    DEF PAUSE_MENU_MAIN_MENU EQU 8
-
 PauseMenuHandleOption:
 
     cp      a,PAUSE_MENU_BUDGET
@@ -958,7 +948,7 @@ PauseMenuHandleOption:
         ; -------
 
         ld      a,[simulation_running]
-        and     a,a ; If minimap room is entered while the simulation is running
+        and     a,a                  ; If minimap room is entered while the simulation is running
         jr      z,.continue_minimaps ; bad things will happen.
         call    SFX_ErrorUI
         ret
@@ -1160,24 +1150,24 @@ InputHandleModeWatch:
 
     ; If not, handle user input
 
-    ld      a,[joy_held]
-    and     a,PAD_B
-    jr      z,.not_b
+    ld      a,[joy_pressed]
+    and     a,PAD_SELECT
+    jr      z,.not_select
 
         call    bg_scroll_in_tile
         and     a,a
-        jr      nz,.skip_change_state_b
+        jr      nz,.skip_change_state_select
 
             ld      b,GAME_STATE_WATCH_FAST_MOVE
             call    GameStateMachineStateSet
             ret
 
-.skip_change_state_b:
+.skip_change_state_select:
 
         call    CursorDrift
         ret
 
-.not_b:
+.not_select:
 
     ld      a,[joy_pressed]
     and     a,PAD_START
@@ -1189,12 +1179,12 @@ InputHandleModeWatch:
 .not_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_SELECT
-    jr      z,.not_select
+    and     a,PAD_B
+    jr      z,.not_b
         ld      b,GAME_STATE_SELECT_BUILDING
         call    GameStateMachineStateSet
         ret
-.not_select:
+.not_b:
 
     call    CursorHandle ; returns a = 1 if bg has scrolled
     and     a,a
@@ -1245,7 +1235,7 @@ InputHandleModeWatch:
 InputHandleModeEdit:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PAD_B|PAD_START|PAD_SELECT  ; Cancel edit mode
     jr      z,.not_b
 
         LONG_CALL   BuildSelectMenuHide
@@ -1270,15 +1260,15 @@ InputHandleModeEdit:
 ;        call    GameStateMachineStateSet
 ;        ret
 ;.not_start:
-
-    ld      a,[joy_pressed]
-    and     a,PAD_SELECT
-    jr      z,.not_select
-        call    BuildOverlayIconHide
-        ld      b,GAME_STATE_SELECT_BUILDING
-        call    GameStateMachineStateSet
-        ret
-.not_select:
+;
+;    ld      a,[joy_pressed]
+;    and     a,PAD_SELECT
+;    jr      z,.not_select
+;        call    BuildOverlayIconHide
+;        ld      b,GAME_STATE_SELECT_BUILDING
+;        call    GameStateMachineStateSet
+;        ret
+;.not_select:
 
     call    CursorHandle ; returns a = 1 if bg has scrolled
     and     a,a
@@ -1408,9 +1398,9 @@ InputHandleModeWatchFastMove:
 
     ; If not, handle user input
 
-    ld      a,[joy_held]
-    and     a,PAD_B
-    jr      nz,.not_b
+    ld      a,[joy_pressed]
+    and     a,PAD_A|PAD_B|PAD_SELECT|PAD_START
+    jr      z,.not_b
 
         call    bg_scroll_in_tile
         and     a,a

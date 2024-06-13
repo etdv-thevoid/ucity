@@ -192,6 +192,8 @@ Main:
 
         LONG_CALL   RoomGame
 
+        LONG_CALL   RoomTitle
+
     jr      .main_loop
 
 ;-------------------------------------------------------------------------------

@@ -331,8 +331,35 @@ SaveMenuPrintSRAMBankInfo:
 
 ;-------------------------------------------------------------------------------
 
+SaveMenuDeletePageNumbers:
+
+    push     bc
+    push     de
+    push     hl
+
+    ld       hl,$9A0B
+    ld       bc,8
+    ld       d,O_SPACE ; Fill with spaces
+    call     vram_memset ;  bc = size    d = value    hl = dest address
+
+    pop      hl
+    pop      de
+    pop      bc
+
+    ret
+
+;-------------------------------------------------------------------------------
+
 SaveMenuPrintSRAMBankEmpty:
 
+    ld      a,[save_menu_num_pages]
+    cp      a,1
+    jr      nz,.more_than_one_page_available
+
+    ; Only one page. Clear the Page X/X text from the screen.
+    call    SaveMenuDeletePageNumbers
+
+.more_than_one_page_available:
     ; b = slot in the screen to draw
     ; c = SRAM bank to print
 
@@ -561,8 +588,14 @@ SaveMenuRedrawPage:
     jr      .loop_not_available
 .end_not_available:
 
+    
+
     ; Draw page number
     ; ----------------
+
+    ld      a,[save_menu_num_pages]
+    cp      a,1
+    jr      z,.no_pages_to_print ; If there's only one page, don't print the page number
 
     ld      a,[save_menu_cursor_x]
     inc     a
@@ -583,7 +616,7 @@ SaveMenuRedrawPage:
 
     ; Print cursor and exit
     ; ---------------------
-
+.no_pages_to_print:
     call    SaveMenuDrawCursor
 
     ret

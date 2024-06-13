@@ -273,10 +273,86 @@ MinimapDrawSelectedMap::
 
 ;-------------------------------------------------------------------------------
 
+MACRO WRITE_B_TO_HL_VRAM ; Clobbers A and C
+    di ; critical section
+        xor     a,a
+        ldh     [rVBK],a
+        WAIT_SCREEN_BLANK ; Clobbers registers A and C
+        ld      [hl],b
+    ei ; end of critical section
+ENDM
+
+;-------------------------------------------------------------------------------
+
+MinimapUpdateLeftArrow:
+
+    push hl
+    push bc
+
+    ld      a,[minimap_selected_map]
+    cp      a,MINIMAP_SELECTION_MIN
+    jr      nz,.not_leftmost
+
+    ; Remove the left arrow
+    ld      hl,$9940
+    ld      b,0
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+    jr      .continue
+
+.not_leftmost
+
+    ; Restore the left arrow
+    ld      hl,$9940
+    ld      b,6
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+
+.continue
+
+    pop hl
+    pop bc
+
+    ret
+
+;-------------------------------------------------------------------------------
+
+MinimapUpdateRightArrow:
+
+    push hl
+    push bc
+
+    ld      a,[minimap_selected_map]
+    cp      a,MINIMAP_SELECTION_MAX
+    jr      nz,.not_rightmost
+
+    ; Remove the right arrow
+    ld      hl,$9953
+    ld      b,0
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+    jr      .continue
+
+.not_rightmost
+
+    ; Restore the right arrow
+    ld      hl,$9953
+    ld      b,4
+    WRITE_B_TO_HL_VRAM ; clobbers A and C
+
+.continue
+
+    pop hl
+    pop bc
+
+    ret
+
+;-------------------------------------------------------------------------------
+
 MinimapSelectMap:: ; b = map to select
 
     ld      a,b
     ld      [minimap_selected_map],a
+
+    call    MinimapUpdateLeftArrow
+    call    MinimapUpdateRightArrow
 
     ret
 
@@ -405,8 +481,8 @@ RoomMinimap::
     and     a,a
     jr      nz,.disaster_mode
 
-        ld      a,MINIMAP_SELECTION_OVERVIEW
-        ld      [minimap_selected_map],a
+        ld      b,MINIMAP_SELECTION_OVERVIEW
+        call    MinimapSelectMap
 
         LONG_CALL   MinimapDrawSelectedMap
 
