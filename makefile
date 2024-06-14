@@ -159,7 +159,7 @@ MAP_OPTS :=
 ################################################################################
 
 # TODO: Remove the -h when RGBASM is updated to remove it
-ASM_OPTS := -h -E
+ASM_OPTS := -h -E -Wextra
 
 %.obj: %.asm
 	@echo rgbasm $< $(ASM_OPTS) -o $@
