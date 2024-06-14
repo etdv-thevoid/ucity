@@ -25,7 +25,7 @@
 ;-------------------------------------------------------------------------------
 
 CITY_TILESET::
-    INCBIN "city_tiles.bin"
+    INCBIN "city_tiles.2bpp"
 
 CITY_TILESET_PALETTES:: ; Same bank as CITY_TILESET!
     DW (31<<10)|(31<<5)|(31<<0), (10<<10)|(31<<5)|(10<<0)

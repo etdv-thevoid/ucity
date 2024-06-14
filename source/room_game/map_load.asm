@@ -53,14 +53,14 @@ MACRO FILE_SECTION ; \1 = label, \2 = file name
     INCBIN  \2
 ENDM
 
-    FILE_SECTION SCENARIO_MAP_0_ROCK_RIVER,  "scenario_0_rock_river_map.bin"
-    FILE_SECTION SCENARIO_ATTR_0_ROCK_RIVER, "scenario_0_rock_river_attr.bin"
-    FILE_SECTION SCENARIO_MAP_1_BORINGTOWN,  "scenario_1_boringtown_map.bin"
-    FILE_SECTION SCENARIO_ATTR_1_BORINGTOWN, "scenario_1_boringtown_attr.bin"
-    FILE_SECTION SCENARIO_MAP_2_PORTVILLE,  "scenario_2_portville_map.bin"
-    FILE_SECTION SCENARIO_ATTR_2_PORTVILLE, "scenario_2_portville_attr.bin"
-    FILE_SECTION SCENARIO_MAP_3_NEWDALE,  "scenario_3_newdale_map.bin"
-    FILE_SECTION SCENARIO_ATTR_3_NEWDALE, "scenario_3_newdale_attr.bin"
+    FILE_SECTION SCENARIO_MAP_0_ROCK_RIVER,  "scenario_0_rock_river_tilemap.rle"
+    FILE_SECTION SCENARIO_ATTR_0_ROCK_RIVER, "scenario_0_rock_river_attrmap.rle"
+    FILE_SECTION SCENARIO_MAP_1_BORINGTOWN,  "scenario_1_boringtown_tilemap.rle"
+    FILE_SECTION SCENARIO_ATTR_1_BORINGTOWN, "scenario_1_boringtown_attrmap.rle"
+    FILE_SECTION SCENARIO_MAP_2_PORTVILLE,  "scenario_2_portville_tilemap.rle"
+    FILE_SECTION SCENARIO_ATTR_2_PORTVILLE, "scenario_2_portville_attrmap.rle"
+    FILE_SECTION SCENARIO_MAP_3_NEWDALE,  "scenario_3_newdale_tilemap.rle"
+    FILE_SECTION SCENARIO_ATTR_3_NEWDALE, "scenario_3_newdale_attrmap.rle"
 
 ;###############################################################################
 

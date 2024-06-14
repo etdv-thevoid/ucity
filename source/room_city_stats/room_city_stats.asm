@@ -47,7 +47,8 @@ city_stats_room_exit:  DS 1 ; set to 1 to exit room
 ;-------------------------------------------------------------------------------
 
 CITY_STATS_MENU_BG_MAP:
-    INCBIN "city_stats_bg_map.bin"
+    INCBIN "city_stats_bg_map.tilemap"
+    INCBIN "city_stats_bg_map.attrmap"
 
     DEF CITY_STATS_MENU_WIDTH  EQU 20
     DEF CITY_STATS_MENU_HEIGHT EQU 18

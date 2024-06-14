@@ -44,19 +44,19 @@ sram_bank_status:: DS SRAM_BANK_NUM_MAX ; 0 = not avail. 1 = ok, 2 = empty/bad
 ; Clears one SRAM bank. Call SRAM_CheckIntegrity after this!
 SRAM_ClearBank:: ; B = bank to clear
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,b
     ld      [rRAMB],a
 
-    ; It is enough to delete the first byte. It's part of the magic string. If
-    ; it is different than the first byte of magic string, the bank is
+    ; It is enough to delete the first byte of the save's magic string.
+    ; If it is different than the first byte of magic string, the bank is
     ; considered to be corrupted.
     xor     a,a
-    ld      [_SRAM],a
+    ld      [SAV_MAGIC_STRING],a
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret
@@ -71,25 +71,8 @@ SRAM_PowerOnCheck::
     ; checksums should be checked first, as they only require reading data from
     ; the cartridge.
 
-    add     sp,-SRAM_BANK_NUM_MAX
-
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
-
-    ; Backup data before performing check. Modify the last byte in each SRAM
-    ; bank to minimize the risk of corrupting useful data while the check is
-    ; in progress.
-    ld      hl,sp+0
-    ld      a,0
-.save_loop:
-    ld      [rRAMB],a
-    ld      b,a
-        ld      a,[_SRAM+$2000-1]
-        ld      [hl+],a
-    ld      a,b
-    inc     a
-    cp      a,SRAM_BANK_NUM_MAX
-    jr      nz,.save_loop
 
     ; Write bank number from 15 to 0 to SRAM banks or'ed with $C0
     ld      a,SRAM_BANK_NUM_MAX-1
@@ -97,7 +80,7 @@ SRAM_PowerOnCheck::
     ld      [rRAMB],a
     ld      b,a
         or      a,$C0
-        ld      [_SRAM+$2000-1],a
+        ld      [SAV_BANK_NUMBER],a
     ld      a,b
     dec     a
     jr      nz,.write_loop
@@ -106,7 +89,7 @@ SRAM_PowerOnCheck::
     ; wrap around and get the actual bank.
     ld      a,SRAM_BANK_NUM_MAX-1
     ld      [rRAMB],a
-    ld      a,[_SRAM+$2000-1]
+    ld      a,[SAV_BANK_NUMBER]
     ld      b,a
     and     a,$F0
     cp      a,$C0
@@ -122,23 +105,9 @@ SRAM_PowerOnCheck::
     inc     a
     ld      [sram_num_available_banks],a
 
-    ; Restore data from bank 15 to 0
-    ld      hl,sp+(SRAM_BANK_NUM_MAX-1)
-    ld      a,SRAM_BANK_NUM_MAX-1
-.restore_loop:
-    ld      [rRAMB],a
-    ld      b,a
-        ld      a,[hl-]
-        ld      [_SRAM+$2000-1],a
-    ld      a,b
-    dec     a
-    jr      nz,.restore_loop
-
 .end_check:
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
-
-    add     sp,+SRAM_BANK_NUM_MAX
 
     ; Now that we know how many banks there are, check data
     call    SRAM_CheckIntegrity

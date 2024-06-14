@@ -51,13 +51,14 @@ MINIMAP_PALETTES:
     DEF MINIMAP_PALETTE_NUM EQU 1
 
 MINIMAP_BG_MAP:
-    INCBIN "minimap_bg_map.bin"
+    INCBIN "minimap_bg_map.tilemap"
+    INCBIN "minimap_bg_map.attrmap"
 
     DEF MINIMAP_WIDTH  EQU 20
     DEF MINIMAP_HEIGHT EQU 18
 
 MINIMAP_TILES:
-    INCBIN "minimap_tiles.bin"
+    INCBIN "minimap_tiles.2bpp"
 .e:
 
     DEF MINIMAP_TILE_NUM EQU ((.e-MINIMAP_TILES)/16)

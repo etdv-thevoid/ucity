@@ -44,7 +44,8 @@ credits_map_selection: DS 1 ; $FF for invalid value
 ;-------------------------------------------------------------------------------
 
 CREDITS_SELECT_BG_MAP:
-    INCBIN "credits_bg_map.bin"
+    INCBIN "credits_bg_map.tilemap"
+    INCBIN "credits_bg_map.attrmap"
 
     DEF CREDITS_SELECT_WIDTH  EQU 20
     DEF CREDITS_SELECT_HEIGHT EQU 18

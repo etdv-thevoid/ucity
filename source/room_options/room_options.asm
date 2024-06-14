@@ -52,7 +52,8 @@ options_menu_blink_frames: DS 1 ; frames left to change status
 ;-------------------------------------------------------------------------------
 
 OPTIONS_MENU_BG_MAP:
-    INCBIN "options_menu_bg_map.bin"
+    INCBIN "options_menu_bg_map.tilemap"
+    INCBIN "options_menu_bg_map.attrmap"
 
     DEF OPTIONS_MENU_WIDTH  EQU 20
     DEF OPTIONS_MENU_HEIGHT EQU 18

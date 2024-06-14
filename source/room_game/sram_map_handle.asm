@@ -56,8 +56,8 @@ SRAMCalculateChecksum: ; Returns HL = checksum of currently enabled SRAM bank
     ;    sum += data[i]
 
     ld      hl,$0000 ; Checksum accumulator
-    ld      de,SAV_CHECKSUM+2 ; pointer to start
-    ld      bc,$2000-(SAV_CHECKSUM+2-_SRAM) ; size to check
+    ld      de,SAV_CHECKSUM_END ; pointer to start
+    ld      bc,$2000-(SAV_CHECKSUM_END-_SRAM) ; size to check
 
 .loop_checksum:
 
@@ -93,12 +93,11 @@ SRAMCalculateChecksum: ; Returns HL = checksum of currently enabled SRAM bank
 ; checksum.
 SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
-    ld      a,b
-
-    ld      [rRAMB],a ; switch to bank
-
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; First, check magic string
 
@@ -128,7 +127,7 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
     ; End. HL should still hold the checksum!
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ld      a,1 ; return A = 1, HL = calculated checksum
@@ -136,7 +135,7 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
 .exit_fail:
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     xor     a,a ; return A = 0
@@ -146,15 +145,14 @@ SRAMCheckBank:: ; B = bank to check. This doesn't check limits.
 
 CityMapSave:: ; b = SRAM BANK to save the data to, doesn't check limits
 
-    ld      a,b
-
     ; Enable SRAM access
     ; ------------------
 
-    ld      [rRAMB],a ; switch to bank
-
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; Clear bank
     ; ----------
@@ -292,7 +290,7 @@ CityMapSave:: ; b = SRAM BANK to save the data to, doesn't check limits
     ; Disable SRAM access
     ; -------------------
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret
@@ -314,15 +312,14 @@ SRAMMapLoad:: ; b = index to load from. This function doesn't check bank limits.
     and     a,a
     ret     z ; if 0, just return!
 
-    ld      a,b
-
     ; Enable SRAM access
     ; ------------------
 
-    ld      [rRAMB],a ; switch to bank
-
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
+
+    ld      a,b
+    ld      [rRAMB],a ; switch to bank
 
     ; Load map
     ; --------
@@ -430,7 +427,7 @@ SRAMMapLoad:: ; b = index to load from. This function doesn't check bank limits.
     ; Disable SRAM access
     ; -------------------
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ld      [rRAMG],a
 
     ret

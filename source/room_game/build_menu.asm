@@ -60,7 +60,7 @@ cpu_busy_icon_active: DS 1
 
 BUILD_SELECT_SPRITES_TILESET:
 .s:
-    INCBIN "build_select_sprites.bin"
+    INCBIN "build_select_sprites.2bpp"
 .e:
 
     DEF NUM_TILES   EQU (.e - .s) / (8*8/4)

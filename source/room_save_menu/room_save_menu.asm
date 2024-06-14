@@ -57,10 +57,12 @@ save_menu_select_any: DS 1
 ;-------------------------------------------------------------------------------
 
 SAVE_MENU_BG_MAP::
-    INCBIN  "save_menu_map.bin"
+    INCBIN  "save_menu_bg_map.tilemap"
+    INCBIN  "save_menu_bg_map.attrmap"
 
 SAVE_MENU_ERROR_BG_MAP::
-    INCBIN  "save_menu_error_map.bin"
+    INCBIN  "save_menu_error_bg_map.tilemap"
+    INCBIN  "save_menu_error_bg_map.attrmap"
 
 ;-------------------------------------------------------------------------------
 
@@ -188,7 +190,7 @@ SaveMenuPrintSRAMBankInfo:
     ; First, read data from SRAM and save to the stack to do the copy to VRAM
     ; with SRAM disabled, which is safer.
 
-    ld      a,CART_RAM_ENABLE
+    ld      a,CART_SRAM_ENABLE
     ld      [rRAMG],a
 
     ld      a,c ; SRAM
@@ -216,7 +218,7 @@ SaveMenuPrintSRAMBankInfo:
     ld      [de],a
     inc     de
 
-    ld      a,CART_RAM_DISABLE
+    ld      a,CART_SRAM_DISABLE
     ldh     [rRAMG],a
 
     pop     bc

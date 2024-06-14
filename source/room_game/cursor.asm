@@ -56,7 +56,7 @@ CursorSizeY::       DS  1
 ;-------------------------------------------------------------------------------
 
 CursorTilesData:
-    INCBIN  "cursor_tiles.bin"
+    INCBIN  "cursor_tiles.2bpp"
 
     DEF CursorTilesNumber   EQU 1
     DEF CURSOR_CORNER_TILE    EQU O_CURSOR

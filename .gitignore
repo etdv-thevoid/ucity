@@ -1,13 +1,23 @@
-ucity.sav
-ucity.gbc
-ucity.sym
-ucity.map
-ucity_compat.sav
-ucity_compat.gbc
+# Ignore all files with no extension
+*
+!*/
+!*.*
+
+# Do not ignore license or makefile
+!license
+!makefile
+
+# Ignore C objects
+*.o
+
+# Ignore RGBDS objects
 *.obj
-tools/mod2gbt/mod2gbt
-tools/compress/extractbit3
-tools/compress/filediff
-tools/compress/rle
-tools/gbmb-1.8/gbmb.ini
-tools/gbtd-2.2/gbtd.ini
+*.2bpp
+*.1bpp
+*.rle
+
+# Ignore ROM objects
+*.gbc
+*.sav
+*.map
+*.sym

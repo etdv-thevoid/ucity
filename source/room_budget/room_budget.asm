@@ -43,7 +43,8 @@ budget_room_exit:  DS 1 ; set to 1 to exit room
 ;-------------------------------------------------------------------------------
 
 BUDGET_MENU_BG_MAP:
-    INCBIN "budget_menu_bg_map.bin"
+    INCBIN "budget_menu_bg_map.tilemap"
+    INCBIN "budget_menu_bg_map.attrmap"
 
     DEF BUDGET_MENU_WIDTH  EQU 20
     DEF BUDGET_MENU_HEIGHT EQU 18
