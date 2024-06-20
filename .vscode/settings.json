@@ -1,0 +1,25 @@
+{
+    "rgbdsz80.includePath": [
+        "",
+        ".",
+        "./assets/",
+        "./audio/",
+        "./images/",
+        "./includes/",
+        "./includes/gbt_player/",
+        "./includes/room/",
+        "./includes/room/game/",
+        "./includes/room/gen_map/",
+        "./includes/room/graphs/",
+        "./includes/room/minimap/",
+        "./includes/simulation/",
+        "./source/",
+        "./source/gbt_player/",
+        "./source/room/",
+        "./source/room/game/",
+        "./source/room/gen_map/",
+        "./source/room/graphs/",
+        "./source/room/minimap/",
+        "./source/simulation/",
+    ]
+}
