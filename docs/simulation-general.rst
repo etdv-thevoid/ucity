@@ -5,7 +5,7 @@ General Simulation
 This file explains the parts of the simulation that aren't explained in any
 other file.
 
-The file ``source/simulation/building_density.asm`` contains information about
+The file ``source/simulation/simulation_building_density.asm`` contains information about
 each tile, which is used when simulating different things:
 
   - Population: Total population of the building (not per-tile of the building).
@@ -32,12 +32,12 @@ Note that there are some messages that can only be shown once per year (in order
 not to annoy the player too much with them). The flags that prevent them from
 being shown again are reseted when ``DateStep`` makes the year increase.
 
-All code related to handling dates and time is in ``source/room_game/date.asm``.
+All code related to handling dates and time is in ``source/room/game/date.asm``.
 
 The historic graphs shown in the graphs room (which can be accessed from the
 pause menu during gameplay) are updated once per month. The way the graphs work
 is that they start being drawn on the right side and they start moving left as
-more data is obtained. The code is in ``/source/room_graphs/graphs_handle.asm``.
+more data is obtained. The code is in ``source/room/graphs/graphs_handle.asm``.
 
 The data for the graphs is stored in a circular buffer (plus an extra variable
 to say where the data starts). All of it is saved in the SRAM when saving the
@@ -82,7 +82,7 @@ Note that, while it is always required to have police departments and schools,
 it is only needed to build the others when the city grows. Fire departments,
 hospitals and high schools are needed as soon as the settlement is bigger than a
 village. The code that checks this is in ``RoomGameSimulateStepNormal`` in
-``source/room_game/room_game.asm``.
+``source/room/room_game.asm``.
 
 The service simulation code is in ``source/simulation/simulation_services.asm``,
 and the masks have been generated with ``tools/lut_gens/gen_mask.c``.
@@ -152,7 +152,7 @@ low taxes may help them come.
 Budget is applied every 3 months, not yearly.
 
 There are some helper functions to handle money in ``source/money.asm``, and
-some definitions in ``source/money.inc``. The macro ``DATA_MONEY_AMOUNT`` is
+some definitions in ``includes/money.inc``. The macro ``DATA_MONEY_AMOUNT`` is
 specially useful. Money amounts are stored as BCD values, this macro helps the
 coder introduce new money amounts without having to do it manually.
 
@@ -233,7 +233,7 @@ creation and destruction of buildings in residential, commercial and industrial
 zones. The effect of this is discussed `here <simulation-buildings.rst>`_.
 
 The happiness of each tile of the settlement can be visualized in a minimap. The
-source code is in ``source/room_minimap/minimap_happiness.asm``.
+source code is in ``source/room/minimap/minimap_happiness.asm``.
 
 In short, for each tile, the corresponding entry in ``WRAMX`` in bank
 ``BANK_CITY_MAP_FLAGS`` is checked for the flags ``TILE_OK_POWER``,

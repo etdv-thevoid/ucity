@@ -11,10 +11,10 @@ removed. That's the only exception.
 
 The relevant code and functions are located in:
 
-- ``source/room_game/tileset_info.inc`` : List of tiles that can be used in the
+- ``includes/room/game/tileset_info.inc`` : List of tiles that can be used in the
   map.
 
-- ``source/room_game/tileset_info.asm`` : Basic information about all tiles that
+- ``source/room/game/tileset_info.asm`` : Basic information about all tiles that
   can be used in the map, like tile type and whether it belongs to a bigger
   building or not.
 
@@ -24,7 +24,7 @@ The relevant code and functions are located in:
   coordinates of this tile to find the origin. The deltas are available in this
   file to be accessed quickly when needed for other calculations.
 
-- ``source/room_game/draw_building.asm`` : Auxiliary functions and top level
+- ``source/room/game/draw_building.asm`` : Auxiliary functions and top level
   building/demolishing functions.
 
     - Utility functions:
@@ -72,9 +72,9 @@ The relevant code and functions are located in:
           field one checking money and subtracting it from the city funds. It
           plays SFX.
 
-- ``source/room_game/building_info.inc`` : List of building IDs.
+- ``includes/room/game/building_info.inc`` : List of building IDs.
 
-- ``source/room_game/building_info.asm`` : Functions to handle buildings. Note
+- ``source/room/game/building_info.asm`` : Functions to handle buildings. Note
   that the demolition tool is also considered a building, but not all the
   functions that handle them allow it as an argument. This file also has
   information about the tiles of a building, their size, prices, etc.
@@ -146,7 +146,7 @@ The relevant code and functions are located in:
         - ``BuildingRemoveAtCoords`` : Removes the building at the specified
           coordinates, checking that the player has enough money.
 
-- ``source/room_game/draw_train.asm`` : Functions to draw train tracks.
+- ``source/room/game/draw_train.asm`` : Functions to draw train tracks.
 
     - ``MapTileUpdateTrain`` : Update the tile at the specified coordinates.
       Useful after building or removing train tracks around it.
@@ -157,7 +157,7 @@ The relevant code and functions are located in:
     - ``MapDrawTrain`` : Draw a train track tile on the cursor and update the
       tiles around it to connect them to it.
 
-- ``source/room_game/draw_power_lines.asm`` : Functions to draw power lines.
+- ``source/room/game/draw_power_lines.asm`` : Functions to draw power lines.
 
     - ``TypeHasElectricityExtended`` : Checks whether the specified tile type is
       something that uses electricity (buildings and power lines).
@@ -174,7 +174,7 @@ The relevant code and functions are located in:
     - ``MapDrawPowerLines`` : Draw a power lines tile on the cursor and update
       the tiles around it to connect them to it.
 
-- ``source/room_game/draw_road.asm`` : Functions to draw roads.
+- ``source/room/game/draw_road.asm`` : Functions to draw roads.
 
     - ``MapTileUpdateRoad`` : Update the tile at the specified coordinates.
       Useful after building or removing power lines around it.
@@ -189,7 +189,7 @@ The relevant code and functions are located in:
       power lines, but it doesn't update neighbours, that has to be done by the
       caller. It doesn't work to demolish bridges.
 
-- ``source/room_game/draw_port.asm`` : Functions to draw and demolish ports.
+- ``source/room/game/draw_port.asm`` : Functions to draw and demolish ports.
 
     - ``MapCheckSurroundingWater`` : Returns 1 if there is water in any tile
       surrounding this building (defined by its coordinates and size).
@@ -217,7 +217,7 @@ The relevant code and functions are located in:
       passed as argument the coordinates of one of the tiles of the port, not
       the docks. It checks for money (docks are free).
 
-- ``source/room_game/draw_common.asm`` : General functions, used for things like
+- ``source/room/game/draw_common.asm`` : General functions, used for things like
   getting information from the map. Also, there are functions to build and
   demolish bridges.
 

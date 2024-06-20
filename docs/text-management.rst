@@ -10,23 +10,23 @@ in:
   The font can be loaded at the end of both tile banks (starting at ``0x8000``
   or at ``0x8800``). The tiles use palette index 7.
 
-- ``source/text.inc`` : Utilities to create strings. Instead of saving them in
+- ``includes/text.inc`` : Utilities to create strings. Instead of saving them in
   ASCII format, they are converted to tiles so that the game doesn't have to do
   the conversion at runtime.
 
-- ``source/room_game/tileset_text.asm`` : Strings to describe each type of
+- ``source/room/game/tileset_text.asm`` : Strings to describe each type of
   terrain (field, road, etc) and function to write it to a buffer.
 
-- ``source/room_game/text_messages.asm`` : Message definitions and functions to
+- ``source/room/game/text_messages.asm`` : Message definitions and functions to
   handle the message queue (requests, peeks, etc).
 
-- ``source/room_game/text_messages.inc`` : Message IDs. Space needed to store
+- ``includes/room/game/text_messages.inc`` : Message IDs. Space needed to store
   the status of persistent messages.
 
-- ``source/room_game/persistent_messages.asm`` : Functions to handle persistent
+- ``source/room/game/persistent_messages.asm`` : Functions to handle persistent
   messages and yearly messages.
 
-- ``source/room_game/message_box.asm`` : Functions to handle the message box
+- ``source/room/game/message_box.asm`` : Functions to handle the message box
   shown in the room game.
 
 Message queue
@@ -67,7 +67,7 @@ they are packed in bytes. The number of bytes needed to save them all is
 Text input
 ==========
 
-The file ``source/room_text_input/room_text_input.asm`` contains a room that
+The file ``source/room/room_text_input.asm`` contains a room that
 allows the player to input a text string. It also lets the game show a string
 to explain shortly what the player is meant to input. It is currently used to
 input the names of cities in randomly generated maps.

@@ -63,7 +63,7 @@ rules (3 = max level of traffic in tile drawing, 0 = no traffic):
 Planes
 ======
 
-The code is located in ``source/simulation/simulation_anim_planes.inc``.
+The code is located in ``includes/simulation/simulation_anim_planes.inc``.
 
 The number of planes that are shown is the number of airports multiplied by 2
 up to a maximum of ``SIMULATION_MAX_PLANES``. Planes can spawn at any airport or
@@ -84,12 +84,12 @@ Note that the minimum value for ``PLANE_CHANGE_DIR_MIN`` should be high enough
 so that the plane doesn't rotate before leaving the runway of an airport. In
 practice, this means that the value should be higher than the length of the
 runway in pixels. Planes spawn at tiles with index ``T_AIRPORT_RUNWAY``, defined
-in ``source/room_game/tileset_info.inc``.
+in ``includes/room/game/tileset_info.inc``.
 
 Boats
 =====
 
-The code is located in ``source/simulation/simulation_anim_boats.inc``.
+The code is located in ``includes/simulation/simulation_anim_boats.inc``.
 
 The number of boats that spawn is the number of tiles with type dock divided by
 2 up to a maximum of ``SIMULATION_MAX_BOATS``. Boats can spawn only next to
@@ -109,7 +109,7 @@ move with a 1/32 chance of actually making it.
 Trains
 ======
 
-The code is located in ``source/simulation/simulation_anim_trains.inc``. Note
+The code is located in ``includes/simulation/simulation_anim_trains.inc``. Note
 that this file also contains ``TrainGenRandomMax16``, function that generates
 16-bit numbers from 0 to a maximum specified number. It is only used here, but
 it could be used in other places if needed.

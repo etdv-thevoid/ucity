@@ -68,7 +68,7 @@ This function receives the coordinates of the top left tile of a power plant,
 gets the power of that type of power plant for the current month, and powers the
 building around it by using a flood fill algorithm with a limited amount of
 paint (power output). The algorithm isn't recursive, it uses the queue functions
-located in the file ``source/simulation/queue.asm``.
+located in the file ``source/simulation/simulation_queue.asm``.
 
 - Check if this power plant has already been handled
 

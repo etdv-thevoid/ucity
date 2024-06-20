@@ -81,7 +81,7 @@ is affected by the type of the tile and the traffic that is already on that
 tile. That way, curves have a higher cost than straight roads, and roads with
 more traffic have a higher cost so cars can try to go through a different path.
 It's not recursive, it uses the queue functions located in the file
-``source/simulation/queue.asm``.
+``source/simulation/simulation_queue.asm``.
 
 NOTE: Only the type of the tile is checked when moving from one tile to another.
 Because of this some weird situations can happen, like cars jumping from the

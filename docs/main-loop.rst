@@ -2,7 +2,7 @@
 Main Loop
 =========
 
-Execution of the game starts in ``source/engine/init.asm`` at ``StartPoint``.
+Execution of the game starts in ``source/init.asm`` at ``StartPoint``.
 There is some hardware initialization code and it eventually jumps to ``Main``
 in ``source/main.asm``, which does game initialization.
 
@@ -11,7 +11,7 @@ there is the start of the main loop. It calls ``RoomMenu`` and ``RoomGame`` in a
 loop. This is how the game manages to go from the main menu to the game room and
 back to the main menu. The main menu room is straightforward, the game room
 isn't, and it is explained below. Note that the code of the game room is in
-``source/room_game/room_game.asm``.
+``source/room/room_game.asm``.
 
 Game main loop
 ==============

@@ -8,10 +8,10 @@ data processing, which takes a few seconds to complete.
 
 The code is located in:
 
-- ``source/room_gen_map/gen_map_circle.inc`` : Look up tables with shapes of
+- ``includes/room/gen_map/gen_map_circle.inc`` : Look up tables with shapes of
   quarter of circles of different radiuses.
 
-- ``source/room_gen_map/gen_map.asm`` : File that contains the map generation
+- ``source/room/gen_map/gen_map.asm`` : File that contains the map generation
   code.
 
 To avoid unnecessary copies between generation steps between WRAMX banks, all

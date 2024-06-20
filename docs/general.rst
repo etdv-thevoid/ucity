@@ -22,7 +22,7 @@ possible to have different layers of the city in different ``WRAMX`` banks and
 access the data corresponding to the same tile by just switching the bank and
 using the same address.
 
-File ``source/room_game/room_game.inc`` contains the definitions that are
+File ``includes/room/room_game.inc`` contains the definitions that are
 referenced below.
 
 - Bank 1: City tile map.
@@ -87,7 +87,7 @@ when the user holds down any of the directions pad keys pressed.
 It is needed to ``InitKeyAutorepeat`` to initialize the internal variables, and
 ``KeyAutorepeatHandle`` must be called after scanning the keys every frame. This
 function modifies the internal variables used by the engine (in
-``source/engine/utils.asm``).
+``source/utils.asm``).
 
 There is a starting waiting period of ``PAD_AUTOREPEAT_WAIT_INITIAL``. If a key
 is hold less than that, no automatic keypress is simulated. After that period is
@@ -98,7 +98,7 @@ Random details
 ==============
 
 - The city map tileset and palettes used by it is included in file
-  ``source/room_game/tileset.asm``. This is used in the title and game rooms.
+  ``source/room/game/tileset.asm``. This is used in the title and game rooms.
 
 - Interrupts are enabled at the beginning of ``Main`` and then they remain
   enabled. The code is only allowed to disable them in critical sections (like

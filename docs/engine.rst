@@ -2,31 +2,31 @@
 Engine
 ======
 
-This file explains the code in the folder ``source/engine``. It contains a
-series of files with helper functions to interact with some parts of the
+This file explains the code in the root ``includes/`` and ``source/`` folders.
+They contain a series of files with helper functions to interact with some parts of the
 hardware. It also describes a few other files that interact with them directly.
 
-- ``source/engine/hardware.inc`` : Definitions of registers and other values
+- ``includes/hardware.inc`` : Definitions of registers and other values
   related to the hardware. This file is frequently used by Game Boy projects,
   but the copy available in this repository has been modified with a few
   changes.
 
-- ``source/engine/engine.inc`` : It contains a few useful macros and function
+- ``includes/engine.inc`` : It contains a few useful macros and function
   declarations that are specific to this engine, not so much to the Game Boy.
 
-- ``source/engine/rand.asm`` : Code to generate random numbers in a quick and
+- ``source/rand.asm`` : Code to generate random numbers in a quick and
   not too reliable way. It should be good enough for this game, though.
 
-- ``source/engine/utils.asm`` : Routines for Memory manipulation, some maths
+- ``source/utils.asm`` : Routines for Memory manipulation, some maths
   operations, joypad handling and ROM stack handling (including routines for
   cross-bank function calls). There are other maths operations in
   ``source/math.asm``, like approximate divisions for stats calculations, when
   the actual result doesn't matter too much.
 
-- ``source/engine/video.asm`` : Helper functions to get the state of the LCD,
+- ``source/video.asm`` : Helper functions to get the state of the LCD,
   copy data to the VRAM and manipulate backgrounds, sprites and palettes.
 
-- ``source/engine/init.asm`` : Interrupt and restart vectors, ROM header,
+- ``source/init.asm`` : Interrupt and restart vectors, ROM header,
   initialization routine, functions to setup interrupt handlers, functions to
   change CPU speed in GBC, stack declaration.
 
@@ -50,8 +50,8 @@ Music and SFX
 =============
 
 This folder also contains the source code of GBT Player (in files
-``source/engine/gbt_player.asm``, ``source/engine/gbt_player.inc`` and
-``source/engine/gbt_player_bank1.asm``). It is a separate project that is
+``includes/gbt_player/gbt_player.inc``, ``source/gbt_player/gbt_player_bank0.asm`` and
+``source/gbt_player_bank1.asm``). It is a separate project that is
 maintained in the following repository: https://github.com/AntonioND/gbt-player
 
 The player only supports music, SFXs must be implemented in a per-game basis. In
