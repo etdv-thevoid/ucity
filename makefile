@@ -20,25 +20,16 @@
 ##                                ROM Name                                    ##
 
 NAME := ucity
-EXT  := gbc
 
-################################################################################
-##               Command to run resulting ROM in an emulator                  ##
-
-ifneq (,$(shell which bgb))
-EMULATOR := bgb
-else ifneq (,$(shell which gambatte))
-EMULATOR := gambatte
-else ifneq (,$(shell which sameboy))
-EMULATOR := sameboy
-else ifneq (,$(shell which mgba))
-EMULATOR := mgba
-else
-EMULATOR :=
-endif
+BIN := $(NAME).gbc
+SAV := $(NAME).sav
+SYM := $(NAME).sym
+MAP := $(NAME).map
 
 ################################################################################
 ## RGBDS can be made to point at a specific folder with the binaries of RGBDS ##
+
+RGBDS ?=
 
 RGBASM  := $(RGBDS)rgbasm
 RGBLINK := $(RGBDS)rgblink
@@ -46,12 +37,27 @@ RGBFIX  := $(RGBDS)rgbfix
 RGBGFX  := $(RGBDS)rgbgfx
 
 ################################################################################
+##               Command to run resulting ROM in an emulator                  ##
+
+ifneq (,$(shell which bgb))
+EMU ?= bgb
+else ifneq (,$(shell which gambatte))
+EMU ?= gambatte
+else ifneq (,$(shell which sameboy))
+EMU ?= sameboy
+else ifneq (,$(shell which mgba))
+EMU ?= mgba
+else
+EMU ?=
+endif
+
+################################################################################
 ##                All source folders - subfolders are included                ##
 
 SOURCE := source assets audio images includes tools
 
 ################################################################################
-##                                 Build Paths                                ##
+##                              Build Object Paths                            ##
 
 # List of relative paths to all folders and subfolders with code or data.
 SOURCE_ALL_DIRS := $(sort $(shell find $(SOURCE) -type d -print))
@@ -75,9 +81,10 @@ PNG_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.png)))
 TOOL_FILES := $(foreach dir,$(SOURCE_ALL_DIRS),$(sort $(wildcard $(dir)/*.c)))
 
 ################################################################################
-##                                Build Objects                               ##
+##                              Build Object Lists                            ##
 
-BIN := $(NAME).$(EXT)
+# Prepare .o paths from source files
+TOOLS := $(TOOL_FILES:.c=.o)
 
 # Prepare object paths from source files
 OBJ := $(ASM_FILES:.asm=.obj)
@@ -86,11 +93,8 @@ OBJ := $(ASM_FILES:.asm=.obj)
 RLE := $(SCENARIO_TILEMAP_FILES:.tilemap=_tilemap.rle)
 RLE += $(SCENARIO_ATTRMAP_FILES:.attrmap=_attrmap.rle)
 
-# Prepare .*bpp paths from source files
-2BPP := $(PNG_FILES:.png=.2bpp)
-
-# Prepare .o paths from source files
-TOOLS := $(TOOL_FILES:.c=.o)
+# Prepare .2bpp paths from source files
+GFX := $(PNG_FILES:.png=.2bpp)
 
 ################################################################################
 ##                                Make Targets                                ##
@@ -104,13 +108,13 @@ rom: $(BIN)
 tools: $(TOOLS)
 
 tidy: 
-	@rm -f $(2BPP) $(RLE) $(OBJ)
+	@rm -f $(GFX) $(RLE) $(OBJ)
 
 clean: tidy
-	@rm -f $(TOOLS) $(BIN) $(NAME).sym $(NAME).map
+	@rm -f $(TOOLS) $(BIN) $(SAV) $(SYM) $(MAP) 
 
 run: rom
-	$(EMULATOR) $(BIN)
+	$(EMU) $(BIN)
 
 ################################################################################
 
@@ -137,7 +141,7 @@ GFX_OPTS :=
 
 ################################################################################
 
-MAP_OPTS :=
+RLE_OPTS :=
 
 %_tilemap.rle: %.tilemap
 	@echo cp -f $< $@
@@ -159,19 +163,19 @@ MAP_OPTS :=
 ################################################################################
 
 # TODO: Remove the -h when RGBASM is updated to remove it
-ASM_OPTS := -h -E -Wextra
+OBJ_OPTS := -h -E -Wextra
 
 %.obj: %.asm
-	@echo rgbasm $< $(ASM_OPTS) -o $@
-	@$(RGBASM) $< $(INCLUDES) $(ASM_OPTS) -o $@
+	@echo rgbasm $< $(OBJ_OPTS) -o $@
+	@$(RGBASM) $< $(INCLUDES) $(OBJ_OPTS) -o $@
 
 ################################################################################
 
 PAD := 0xFF
-LINK_OPTS := -p $(PAD) -m $(NAME).map -n $(NAME).sym
+LINK_OPTS := -p $(PAD) -m $(MAP) -n $(SYM)
 FIX_OPTS := -p $(PAD) -v
 
-$(BIN): $(2BPP) $(RLE) $(OBJ)
+$(BIN): $(GFX) $(RLE) $(OBJ)
 	@echo rgblink $(LINK_OPTS) -o $(BIN)
 	@$(RGBLINK) $(LINK_OPTS) -o $(BIN) $(OBJ)
 	$(RGBFIX) $(FIX_OPTS) $(BIN)
