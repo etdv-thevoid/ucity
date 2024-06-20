@@ -20,12 +20,12 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;###############################################################################
 
-    SECTION "Room Only For GBC Data",ROMX
+SECTION "Room Only For GBC Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

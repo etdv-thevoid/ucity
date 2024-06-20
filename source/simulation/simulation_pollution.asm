@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Pollution Variables",WRAM0
+SECTION "Simulation Pollution Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ pollution_total_percent:: DS 1 ; percentage of pollution
 
 ;###############################################################################
 
-    SECTION "Simulation Pollution Functions",ROMX
+SECTION "Simulation Pollution Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

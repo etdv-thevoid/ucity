@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_graphs.inc"
+INCLUDE "room_graphs.inc"
 
 ;###############################################################################
 
-    SECTION "Graph Handling Data",WRAM0
+SECTION "Graph Handling Data",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ GRAPH_MONEY_SCALE:   DS 1
 
 ;###############################################################################
 
-    SECTION "Graph Handling Functions",ROMX
+SECTION "Graph Handling Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

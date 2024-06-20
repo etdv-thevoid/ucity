@@ -20,13 +20,13 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
@@ -36,7 +36,7 @@
 
 ;###############################################################################
 
-    SECTION "Simulation Transportation Map Variables",WRAM0
+SECTION "Simulation Transportation Map Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -148,19 +148,19 @@ ENDC
 
 ;###############################################################################
 
-    SECTION "Simulation Transportation Animations Functions",ROMX
+SECTION "Simulation Transportation Animations Functions",ROMX
 
 ;###############################################################################
 
-    INCLUDE "simulation_anim_planes.inc"
+INCLUDE "simulation_anim_planes.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "simulation_anim_trains.inc"
+INCLUDE "simulation_anim_trains.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "simulation_anim_boats.inc"
+INCLUDE "simulation_anim_boats.inc"
 
 ;###############################################################################
 

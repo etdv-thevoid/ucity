@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "room_graphs.inc"
+INCLUDE "room_game.inc"
+INCLUDE "room_graphs.inc"
 
 ;###############################################################################
 
-    SECTION "Room Graphs Variables",WRAM0
+SECTION "Room Graphs Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ graphs_selected: DS 1
 
 ;###############################################################################
 
-    SECTION "Room Graphs Functions",ROMX
+SECTION "Room Graphs Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -231,7 +231,7 @@ RoomGraphs::
 
 ;###############################################################################
 
-    SECTION "Room Graphs Code Bank 0",ROM0
+SECTION "Room Graphs Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

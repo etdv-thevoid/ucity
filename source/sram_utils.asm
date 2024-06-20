@@ -20,12 +20,12 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;###############################################################################
 
-    SECTION "SRAM Utils Variables",WRAM0
+SECTION "SRAM Utils Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ sram_bank_status:: DS SRAM_BANK_NUM_MAX ; 0 = not avail. 1 = ok, 2 = empty/bad
 
 ;###############################################################################
 
-    SECTION "SRAM Utils Functions",ROMX
+SECTION "SRAM Utils Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

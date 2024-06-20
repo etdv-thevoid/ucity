@@ -1,7 +1,7 @@
 
 ; File created by mod2gbt
 
-    SECTION "song_title_0",ROMX
+SECTION "song_title_0",ROMX
 song_title_0:
     DB  $20, $9F,$18, $20, $4A,$07
     DB  $00, $20, $00, $20
@@ -68,7 +68,7 @@ song_title_0:
     DB  $00, $00, $00, $00
     DB  $00, $00, $00, $00
 
-    SECTION "song_title_1",ROMX
+SECTION "song_title_1",ROMX
 song_title_1:
     DB  $20, $9F,$18, $9F,$22, $00
     DB  $00, $20, $00, $00
@@ -135,7 +135,7 @@ song_title_1:
     DB  $00, $9A,$18, $00, $00
     DB  $00, $20, $00, $00
 
-    SECTION "song_title_2",ROMX
+SECTION "song_title_2",ROMX
 song_title_2:
     DB  $20, $9B,$18, $9B,$22, $00
     DB  $00, $20, $00, $00

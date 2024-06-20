@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "room_minimap.inc"
+INCLUDE "room_game.inc"
+INCLUDE "room_minimap.inc"
 
 ;###############################################################################
 
-    SECTION "Room Minimap Variables",WRAM0
+SECTION "Room Minimap Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ minimap_selected_map: DS 1
 
 ;###############################################################################
 
-    SECTION "Room Minimap Data",ROMX
+SECTION "Room Minimap Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -532,7 +532,7 @@ RoomMinimap::
 
 ;###############################################################################
 
-    SECTION "Room Minimap Code Bank 0",ROM0
+SECTION "Room Minimap Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

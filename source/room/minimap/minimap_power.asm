@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Minimap Power Grid Map Functions",ROMX
+SECTION "Minimap Power Grid Map Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

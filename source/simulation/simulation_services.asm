@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
+INCLUDE "room_game.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Services Functions",ROMX
+SECTION "Simulation Services Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -274,7 +274,7 @@ Simulation_Services:: ; BC = central tile of the building (tileset_info.inc)
 
 ;###############################################################################
 
-    SECTION "Simulation Big Services Functions",ROMX
+SECTION "Simulation Big Services Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

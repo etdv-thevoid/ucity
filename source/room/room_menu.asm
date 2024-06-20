@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "map_load.inc"
-    INCLUDE "text.inc"
-    INCLUDE "room_text_input.inc"
+INCLUDE "map_load.inc"
+INCLUDE "text.inc"
+INCLUDE "room_text_input.inc"
 
 ;###############################################################################
 
-    SECTION "Room Menu Variables",WRAM0
+SECTION "Room Menu Variables",WRAM0
 
     DEF MENU_NUMBER_ELEMENTS EQU 4
 menu_selection: DS 1
@@ -43,7 +43,7 @@ menu_cursor_frames: DS 1 ; number of frames left before switching blink
 
 ;###############################################################################
 
-    SECTION "Room Menu Code Data",ROMX
+SECTION "Room Menu Code Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -539,7 +539,7 @@ RoomMenu::
 
 ;###############################################################################
 
-    SECTION "Room Menu Code ROM0",ROM0
+SECTION "Room Menu Code ROM0",ROM0
 
 ;-------------------------------------------------------------------------------
 

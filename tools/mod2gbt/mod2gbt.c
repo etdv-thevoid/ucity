@@ -784,7 +784,7 @@ void convert_channel4(u8 pattern_number, u8 step_number, u8 note_index,
 
 void convert_pattern(_pattern_t * pattern, u8 number)
 {
-    out_write_str("    SECTION \"");
+    out_write_str("SECTION \"");
     out_write_str(label_name);
     out_write_str("_");
     out_write_dec(number);

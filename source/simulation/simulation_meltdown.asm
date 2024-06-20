@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Nuclear Meltdown Functions",ROMX
+SECTION "Nuclear Meltdown Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

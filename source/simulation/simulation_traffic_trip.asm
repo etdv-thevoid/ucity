@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Traffic Trip Variables",HRAM
+SECTION "Simulation Traffic Trip Variables",HRAM
 
 ;-------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ source_building_remaining_density: DS 1
 
 ;###############################################################################
 
-    SECTION "Simulation Traffic Trip Functions",ROMX
+SECTION "Simulation Traffic Trip Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

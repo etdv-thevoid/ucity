@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
-    INCLUDE "text.inc"
+INCLUDE "money.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room Budget Variables",WRAM0
+SECTION "Room Budget Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ budget_room_exit:  DS 1 ; set to 1 to exit room
 
 ;###############################################################################
 
-    SECTION "Room Budget Data",ROMX
+SECTION "Room Budget Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ BUDGET_MENU_BG_MAP:
 
 ;###############################################################################
 
-    SECTION "Room Budget Code Bank 0",ROM0
+SECTION "Room Budget Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

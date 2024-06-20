@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Count Buildings Variables",WRAM0
+SECTION "Simulation Count Buildings Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ COUNT_TRAIN_TRACKS::    DS 2 ; LSB first
 
 ;###############################################################################
 
-    SECTION "Simulation Count Buildings Functions",ROMX
+SECTION "Simulation Count Buildings Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

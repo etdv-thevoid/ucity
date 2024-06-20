@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Minimap Overview Functions",ROMX
+SECTION "Minimap Overview Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

@@ -20,20 +20,20 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "building_info.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "money.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "money.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Calculate Statistics Variables",WRAM0
+SECTION "Simulation Calculate Statistics Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ graph_value_i:: DS 1 ; central value
 
 ;###############################################################################
 
-    SECTION "Simulation Calculate Statistics Functions",ROMX,ALIGN[8]
+SECTION "Simulation Calculate Statistics Functions",ROMX,ALIGN[8]
 
 ;-------------------------------------------------------------------------------
 

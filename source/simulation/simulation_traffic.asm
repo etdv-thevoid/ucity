@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Traffic Variables",WRAM0
+SECTION "Simulation Traffic Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ simulation_traffic_jam_num_tiles_percent:: DS 1
 
 ;###############################################################################
 
-    SECTION "Simulation Traffic Functions",ROMX
+SECTION "Simulation Traffic Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

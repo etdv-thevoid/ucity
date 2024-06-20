@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Fire Helper Variables",HRAM
+SECTION "Fire Helper Variables",HRAM
 
 ;-------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ extinguish_fire_probability: DS 1
 
 ;###############################################################################
 
-    SECTION "Simulation Fire Functions",ROMX
+SECTION "Simulation Fire Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

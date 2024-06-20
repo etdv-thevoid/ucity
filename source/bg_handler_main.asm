@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
+INCLUDE "room_game.inc"
 
 ;###############################################################################
 
-    SECTION "Main Background Handling", ROM0
+SECTION "Main Background Handling", ROM0
 
 ;-------------------------------------------------------------------------------
 

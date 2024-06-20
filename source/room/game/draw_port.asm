@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "building_info.inc"
 
 ;###############################################################################
 
-    SECTION "City Map Draw Port Functions",ROMX
+SECTION "City Map Draw Port Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -671,7 +671,7 @@ MapDrawPort::
 
 ;###############################################################################
 
-    SECTION "City Map Draw Port Functions Bank 0",ROM0
+SECTION "City Map Draw Port Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

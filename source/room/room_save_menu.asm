@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_text_input.inc"
-    INCLUDE "save_struct.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_text_input.inc"
+INCLUDE "save_struct.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room Save Menu Variables",WRAM0
+SECTION "Room Save Menu Variables",WRAM0
 
     DEF SAVE_MENU_CURSOR_BLINK_FRAMES EQU 30
 save_menu_cursor_x:      DS 1 ; page
@@ -52,7 +52,7 @@ save_menu_select_any: DS 1
 
 ;###############################################################################
 
-    SECTION "Room Save Menu Data",ROMX
+SECTION "Room Save Menu Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

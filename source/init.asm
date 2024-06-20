@@ -20,8 +20,8 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ; Note: Don't include charmaps in this file or the game name in the ROM header
 ; will be corrupted!
@@ -32,29 +32,29 @@
 ;#                                                                             #
 ;###############################################################################
 
-    SECTION "RST_00",ROM0[$0000]
+SECTION "RST_00",ROM0[$0000]
     ret ; Reserved for the interrupt handler. If an interrupt vector is $0000
     ; it jumps here when it's triggered and returns.
 
-    SECTION "RST_08",ROM0[$0008]
+SECTION "RST_08",ROM0[$0008]
     jp      hl ; Reserved for interrupt handler and CALL_HL macro.
 
-    SECTION "RST_10",ROM0[$0010]
+SECTION "RST_10",ROM0[$0010]
     ret
 
-    SECTION "RST_18",ROM0[$0018]
+SECTION "RST_18",ROM0[$0018]
     ret
 
-    SECTION "RST_20",ROM0[$0020]
+SECTION "RST_20",ROM0[$0020]
     ret
 
-    SECTION "RST_28",ROM0[$0028]
+SECTION "RST_28",ROM0[$0028]
     ret
 
-    SECTION "RST_30",ROM0[$0030]
+SECTION "RST_30",ROM0[$0030]
     ret
 
-    SECTION "RST_38",ROM0[$0038]
+SECTION "RST_38",ROM0[$0038]
     jp      Reset ; Undefined reads are $FF most times, which corresponds to
                   ; RST $38. It's good practice to put a reset here.
 
@@ -64,28 +64,28 @@
 ;#                                                                             #
 ;###############################################################################
 
-    SECTION "VBL Interrupt Vector",ROM0[$0040]
+SECTION "VBL Interrupt Vector",ROM0[$0040]
     push    hl
     ld      hl,_is_vbl_flag
     ld      [hl],1
     jr      int_VBlank
 
-    SECTION "LCD Interrupt Vector",ROM0[$0048]
+SECTION "LCD Interrupt Vector",ROM0[$0048]
     push    hl
     ld      hl,LCD_handler
     jr      int_Common
 
-    SECTION "TIM Interrupt Vector",ROM0[$0050]
+SECTION "TIM Interrupt Vector",ROM0[$0050]
     push    hl
     ld      hl,TIM_handler
     jr      int_Common
 
-    SECTION "SIO Interrupt Vector",ROM0[$0058]
+SECTION "SIO Interrupt Vector",ROM0[$0058]
     push    hl
     ld      hl,SIO_handler
     jr      int_Common
 
-    SECTION "JOY Interrupt Vector",ROM0[$0060]
+SECTION "JOY Interrupt Vector",ROM0[$0060]
     push    hl
     ld      hl,JOY_handler
     jr      int_Common
@@ -140,7 +140,7 @@ wait_vbl:
 ;#                                                                             #
 ;###############################################################################
 
-    SECTION "Cartridge Header",ROM0[$0100]
+SECTION "Cartridge Header",ROM0[$0100]
 
     nop
     jp      StartPoint
@@ -171,7 +171,7 @@ wait_vbl:
 ;#                                                                             #
 ;###############################################################################
 
-    SECTION "Program Start",ROM0[$0150]
+SECTION "Program Start",ROM0[$0150]
 
 StartPoint:
 
@@ -344,7 +344,7 @@ __CPU_switch:
 
 ;###############################################################################
 
-    SECTION "StartupVars",WRAM0
+SECTION "StartupVars",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -362,7 +362,7 @@ JOY_handler:    DS 2
 
 ;###############################################################################
 
-    SECTION "Stack",WRAM0[$CE00]
+SECTION "Stack",WRAM0[$CE00]
 
 ;-------------------------------------------------------------------------------
 

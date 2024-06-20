@@ -20,13 +20,13 @@
 ;
 ;###############################################################################
 
-    INCLUDE "gbt_player.inc"
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "gbt_player.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;###############################################################################
 
-    SECTION "SFX Variables 0",WRAM0
+SECTION "SFX Variables 0",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ sfx_end_callback:   DS 2 ; LSB first
 
 ;###############################################################################
 
-    SECTION "SFX Functions Bank 0",ROM0
+SECTION "SFX Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

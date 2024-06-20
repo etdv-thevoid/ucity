@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "room_graphs.inc"
+INCLUDE "room_game.inc"
+INCLUDE "room_graphs.inc"
 
 ;###############################################################################
 
-    SECTION "Graphs Menu Variables",WRAM0
+SECTION "Graphs Menu Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ graphs_cursor_y_offset_countdown: DS 1 ; frames to move
 
 ;###############################################################################
 
-    SECTION "Graphs Menu Data Functions",ROMX
+SECTION "Graphs Menu Data Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -394,7 +394,7 @@ GraphsMenuLoadGFX::
 
 ;###############################################################################
 
-    SECTION "Graphs Menu Code Bank 0",ROM0
+SECTION "Graphs Menu Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

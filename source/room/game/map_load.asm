@@ -20,22 +20,22 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "map_load.inc"
-    INCLUDE "money.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "save_struct.inc"
-    INCLUDE "text.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "room_text_input.inc"
+INCLUDE "map_load.inc"
+INCLUDE "money.inc"
+INCLUDE "room_game.inc"
+INCLUDE "save_struct.inc"
+INCLUDE "text.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "room_text_input.inc"
 
 ;###############################################################################
 
-    SECTION "Map Load Variables",WRAM0
+SECTION "Map Load Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ selected_map: DS 1
 ; Create a new section in ROMX for each map
 
 MACRO FILE_SECTION ; \1 = label, \2 = file name
-    SECTION "\1",ROMX
+SECTION "\1",ROMX
 \1:
     INCBIN  \2
 ENDM
@@ -64,7 +64,7 @@ ENDM
 
 ;###############################################################################
 
-    SECTION "Map Load Functions Bank 0",ROM0
+SECTION "Map Load Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

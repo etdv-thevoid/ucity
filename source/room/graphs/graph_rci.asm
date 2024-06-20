@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_graphs.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_graphs.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "RCI Graph Functions",ROMX
+SECTION "RCI Graph Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

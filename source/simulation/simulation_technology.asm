@@ -20,19 +20,19 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "building_info.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Technology Variables",WRAM0
+SECTION "Simulation Technology Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ technology_level:: DS 1 ; maxes out at TECH_LEVEL_MAX
 
 ;###############################################################################
 
-    SECTION "Simulation Technology Functions",ROMX
+SECTION "Simulation Technology Functions",ROMX
 
 ;###############################################################################
 

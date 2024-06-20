@@ -20,19 +20,19 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
+INCLUDE "hardware.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
-    INCLUDE "room_graphs.inc"
-    INCLUDE "room_text_input.inc"
-    INCLUDE "save_struct.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "money.inc"
+INCLUDE "room_graphs.inc"
+INCLUDE "room_text_input.inc"
+INCLUDE "save_struct.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Save Data General", SRAM[_SRAM]
+SECTION "Save Data General", SRAM[_SRAM]
 
 ;-------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ SAV_NEGATIVE_BUDGET_COUNT:: DS 1
 
 ;-------------------------------------------------------------------------------
 
-    SECTION "Save Data Configuration", SRAM[_SRAM+$200]
+SECTION "Save Data Configuration", SRAM[_SRAM+$200]
 
 ;-------------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ SAV_OPTIONS_MUSIC_DISABLED::      DS 1
 
 ;-------------------------------------------------------------------------------
 
-    SECTION "Save Data Historical Information", SRAM[_SRAM+$400]
+SECTION "Save Data Historical Information", SRAM[_SRAM+$400]
 
 ;-------------------------------------------------------------------------------
 
@@ -104,7 +104,7 @@ SAV_GRAPH_MONEY_SCALE::  DS 1
 
 ;-------------------------------------------------------------------------------
 
-    SECTION "Save Data Map Attr", SRAM[_SRAM+$E00]
+SECTION "Save Data Map Attr", SRAM[_SRAM+$E00]
 
 ;-------------------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ SAV_MAP_ATTR_BASE::  DS $1000/8 ; compressed, only the bank 0/1 bit is saved
 
 ;-------------------------------------------------------------------------------
 
-    SECTION "Save Data Map", SRAM[_SRAM+$1000]
+SECTION "Save Data Map", SRAM[_SRAM+$1000]
 
 ;-------------------------------------------------------------------------------
 

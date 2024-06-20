@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "text.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room Credits Variables",WRAM0
+SECTION "Room Credits Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ credits_map_selection: DS 1 ; $FF for invalid value
 
 ;###############################################################################
 
-    SECTION "Room Credits Code Data",ROMX
+SECTION "Room Credits Code Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

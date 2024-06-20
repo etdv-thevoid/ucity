@@ -20,20 +20,20 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "map_load.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "room_text_input.inc"
-    INCLUDE "text.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "map_load.inc"
+INCLUDE "room_game.inc"
+INCLUDE "room_text_input.inc"
+INCLUDE "text.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Room Scenarios Variables",WRAM0
+SECTION "Room Scenarios Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ scenario_select_map_selection:: DS 1 ; $FF for invalid value
 
 ;###############################################################################
 
-    SECTION "Room Scenarios Code Data",ROMX
+SECTION "Room Scenarios Code Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -352,7 +352,7 @@ RoomScenarioSelect::
 
 ;###############################################################################
 
-    SECTION "Room Scenarios Code Bank 0",ROM0
+SECTION "Room Scenarios Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

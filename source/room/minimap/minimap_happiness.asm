@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Minimap Happiness Map Functions",ROMX[$4000]
+SECTION "Minimap Happiness Map Functions",ROMX[$4000]
 
 ;-------------------------------------------------------------------------------
 

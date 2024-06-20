@@ -20,19 +20,19 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "building_info.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
-    INCLUDE "room_text_input.inc"
+INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
+INCLUDE "room_text_input.inc"
 
 ;###############################################################################
 
-    SECTION "Status Bar Functions",ROMX
+SECTION "Status Bar Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ STATUS_BAR_MAP:
 
 ;###############################################################################
 
-    SECTION "Status Bar Variables",WRAM0
+SECTION "Status Bar Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ status_bar_overlay_sprites_active:: DS 1 ; LCDCF_OBJON or 0
 
 ;###############################################################################
 
-    SECTION "Status Bar Functions Bank 0",ROM0
+SECTION "Status Bar Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

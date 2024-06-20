@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "building_info.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Create Buildings Functions",ROMX
+SECTION "Simulation Create Buildings Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

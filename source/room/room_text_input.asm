@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "text.inc"
-    INCLUDE "room_text_input.inc"
+INCLUDE "text.inc"
+INCLUDE "room_text_input.inc"
 
 ;###############################################################################
 
-    SECTION "Room Text Input Variables",WRAM0
+SECTION "Room Text Input Variables",WRAM0
 
 text_prompt_string: DS TEXT_PROMPT_STRING_LENGTH
 text_input_buffer:: DS (TEXT_INPUT_LENGTH+1) ; Add 1 for the null terminator
@@ -47,7 +47,7 @@ text_input_exit:    DS 1 ; set to 1 to exit
 
 ;###############################################################################
 
-    SECTION "Room Text Input Data",ROMX
+SECTION "Room Text Input Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -575,7 +575,7 @@ RoomTextInputSetPrompt:: ; de = pointer to string
 
 ;###############################################################################
 
-    SECTION "Room Text Input Code Data",ROM0
+SECTION "Room Text Input Code Data",ROM0
 
 ;-------------------------------------------------------------------------------
 

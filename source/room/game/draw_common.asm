@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "City Map Draw Data",ROM0,ALIGN[8]
+SECTION "City Map Draw Data",ROM0,ALIGN[8]
 
 ;-------------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ ENDC
 
 ;###############################################################################
 
-    SECTION "City Map Draw Variables",WRAM0
+SECTION "City Map Draw Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ check_money_delete_bridge: DS 1
 
 ;###############################################################################
 
-    SECTION "City Map Draw Functions",ROM0
+SECTION "City Map Draw Functions",ROM0
 
 ;-------------------------------------------------------------------------------
 

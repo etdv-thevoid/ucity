@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "text.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "text.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Message Box Variables",WRAM0
+SECTION "Message Box Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ message_box_enabled: DS 1 ; 1 if enabled
 
 ;###############################################################################
 
-    SECTION "Message Box Functions Bank 0",ROM0
+SECTION "Message Box Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

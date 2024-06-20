@@ -20,19 +20,19 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "money.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "money.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Simulation Calculate Money Variables",WRAM0
+SECTION "Simulation Calculate Money Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ negative_budget_count:: DS 1
 
 ;###############################################################################
 
-    SECTION "Simulation Calculate Money Functions",ROMX
+SECTION "Simulation Calculate Money Functions",ROMX
 
 ;###############################################################################
 

@@ -20,21 +20,21 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "building_info.inc"
-    INCLUDE "text.inc"
-    INCLUDE "money.inc"
-    INCLUDE "text_messages.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "building_info.inc"
+INCLUDE "text.inc"
+INCLUDE "money.inc"
+INCLUDE "text_messages.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Room Game Variables",WRAM0
+SECTION "Room Game Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -94,30 +94,30 @@ game_requested_disaster: DS 1 ; Set to a value != 0 to cause a disaster
 
 ;###############################################################################
 
-    SECTION "City Map Tiles",WRAMX,BANK[BANK_CITY_MAP_TILES]
+SECTION "City Map Tiles",WRAMX,BANK[BANK_CITY_MAP_TILES]
 CITY_MAP_TILES:: DS CITY_MAP_WIDTH*CITY_MAP_HEIGHT ; Tile number
 
-    SECTION "City Map Attrs",WRAMX,BANK[BANK_CITY_MAP_ATTR]
+SECTION "City Map Attrs",WRAMX,BANK[BANK_CITY_MAP_ATTR]
 CITY_MAP_ATTR:: DS CITY_MAP_WIDTH*CITY_MAP_HEIGHT ; Palette, tile bank
 
-    SECTION "City Map Type",WRAMX,BANK[BANK_CITY_MAP_TYPE]
+SECTION "City Map Type",WRAMX,BANK[BANK_CITY_MAP_TYPE]
 CITY_MAP_TYPE:: DS CITY_MAP_WIDTH*CITY_MAP_HEIGHT ; Residential, road...
 
-    SECTION "City Map Traffic",WRAMX,BANK[BANK_CITY_MAP_TRAFFIC]
+SECTION "City Map Traffic",WRAMX,BANK[BANK_CITY_MAP_TRAFFIC]
 CITY_MAP_TRAFFIC:: DS CITY_MAP_WIDTH*CITY_MAP_HEIGHT
 
-    SECTION "City Map Flags",WRAMX,BANK[BANK_CITY_MAP_FLAGS]
+SECTION "City Map Flags",WRAMX,BANK[BANK_CITY_MAP_FLAGS]
 CITY_MAP_FLAGS:: DS CITY_MAP_WIDTH*CITY_MAP_HEIGHT
 
-    SECTION "Scratch WRAM Bank",WRAMX,BANK[BANK_SCRATCH_RAM]
+SECTION "Scratch WRAM Bank",WRAMX,BANK[BANK_SCRATCH_RAM]
 SCRATCH_RAM:: DS $1000
 
-    SECTION "Scratch WRAM Bank 2",WRAMX,BANK[BANK_SCRATCH_RAM_2]
+SECTION "Scratch WRAM Bank 2",WRAMX,BANK[BANK_SCRATCH_RAM_2]
 SCRATCH_RAM_2:: DS $1000
 
 ;###############################################################################
 
-    SECTION "Room Game Code Data Bank 0",ROM0
+SECTION "Room Game Code Data Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 
@@ -643,7 +643,7 @@ RoomGameLoad:
 
 ;###############################################################################
 
-    SECTION "Room Game Code Data",ROMX
+SECTION "Room Game Code Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

@@ -6,7 +6,7 @@
 ;#                                             Contact: antonio_nd@outlook.com #
 ;###############################################################################
 
-; Copyright (c) 2009-2016, Antonio Niño Díaz (AntonioND)
+; Copyright (c) 2009-2016, Antonio Niï¿½o Dï¿½az (AntonioND)
 ; All rights reserved.
 ;
 ; Redistribution and use in source and binary forms, with or without
@@ -32,12 +32,12 @@
 
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "gbt_player.inc"
+INCLUDE "hardware.inc"
+INCLUDE "gbt_player.inc"
 
 ;###############################################################################
 
-    SECTION "GBT_BANK1",ROMX,BANK[1]
+SECTION "GBT_BANK1",ROMX,BANK[1]
 
 ;-------------------------------------------------------------------------------
 

@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
-    INCLUDE "text.inc"
+INCLUDE "money.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room Bank Variables",WRAM0
+SECTION "Room Bank Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ bank_room_exit:  DS 1 ; set to 1 to exit room
 
 ;###############################################################################
 
-    SECTION "Room Bank Data",ROMX
+SECTION "Room Bank Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

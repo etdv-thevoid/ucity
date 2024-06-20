@@ -1,7 +1,7 @@
 
 ; File created by mod2gbt
 
-    SECTION "song_city_0",ROMX
+SECTION "song_city_0",ROMX
 song_city_0:
     DB  $20, $9F,$18, $9F,$22, $4A,$07
     DB  $00, $20, $20, $20
@@ -68,7 +68,7 @@ song_city_0:
     DB  $00, $00, $00, $00
     DB  $00, $00, $20, $00
 
-    SECTION "song_city_1",ROMX
+SECTION "song_city_1",ROMX
 song_city_1:
     DB  $20, $9F,$18, $9F,$22, $20
     DB  $00, $20, $20, $00
@@ -135,7 +135,7 @@ song_city_1:
     DB  $00, $00, $00, $00
     DB  $00, $00, $20, $00
 
-    SECTION "song_city_2",ROMX
+SECTION "song_city_2",ROMX
 song_city_2:
     DB  $20, $20, $9F,$22, $20
     DB  $00, $00, $20, $00
@@ -202,7 +202,7 @@ song_city_2:
     DB  $00, $00, $00, $00
     DB  $00, $00, $20, $00
 
-    SECTION "song_city_3",ROMX
+SECTION "song_city_3",ROMX
 song_city_3:
     DB  $20, $20, $9F,$22, $20
     DB  $00, $00, $20, $00

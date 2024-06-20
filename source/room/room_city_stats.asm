@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
+INCLUDE "money.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room City Stats Variables",WRAM0
+SECTION "Room City Stats Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ city_stats_room_exit:  DS 1 ; set to 1 to exit room
 
 ;###############################################################################
 
-    SECTION "Room City Stats Data",ROMX
+SECTION "Room City Stats Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "map_load.inc"
+INCLUDE "map_load.inc"
 
 ;###############################################################################
 
-    SECTION "Room Title Variables",WRAM0
+SECTION "Room Title Variables",WRAM0
 
 title_exit:             DS  1
 title_scroll_dir_x:     DS  1
@@ -45,7 +45,7 @@ title_blink_state:      DS  1
 
 ;###############################################################################
 
-    SECTION "Room Title Code Data",ROMX
+SECTION "Room Title Code Data",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ RoomTitle::
 
 ;###############################################################################
 
-    SECTION "Room Title Code ROM0",ROM0
+SECTION "Room Title Code ROM0",ROM0
 
 ;-------------------------------------------------------------------------------
 

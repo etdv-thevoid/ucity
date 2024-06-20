@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "engine.inc"
-    INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Genenerate Map Variables HRAM",HRAM
+SECTION "Genenerate Map Variables HRAM",HRAM
 
 ;-------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ fix_map_changed: DS 1
 
 ;###############################################################################
 
-    SECTION "Genenerate Map Variables",WRAM0
+SECTION "Genenerate Map Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ forest_threshold: DS 1
 
 ;###############################################################################
 
-    SECTION "Genenerate Map Code Data",ROMX,ALIGN[8]
+SECTION "Genenerate Map Code Data",ROMX,ALIGN[8]
 
 ;-------------------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ shift_left_five: ; LSB first, MSB second
 
 ; It doesn't need to be aligned to $100
 
-    INCLUDE "gen_map_circle.inc"
+INCLUDE "gen_map_circle.inc"
 
 ;-------------------------------------------------------------------------------
 

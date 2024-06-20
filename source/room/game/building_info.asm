@@ -20,19 +20,19 @@
 ;
 ;###############################################################################
 
-    INCLUDE "engine.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "building_info.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "money.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "building_info.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "money.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Building Information Variables", WRAM0
+SECTION "Building Information Variables", WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ building_temp_price: DS 5
 
 ;###############################################################################
 
-    SECTION "Building Information Functions", ROM0
+SECTION "Building Information Functions", ROM0
 
 ;-------------------------------------------------------------------------------
 
@@ -458,7 +458,7 @@ BuildingRemoveAtCoords:: ; d = y, e = x
 
 ;###############################################################################
 
-    SECTION "Building Information Arrays", ROMX
+SECTION "Building Information Arrays", ROMX
 
 ;###############################################################################
 
@@ -731,7 +731,7 @@ BUILDING_INFO_POINTERS_ARRAY:: ; Pointers to structs. Indexes are B_Xxxxxx
 
 ;###############################################################################
 
-    SECTION "Building Information Arrays Bank 0", ROM0
+SECTION "Building Information Arrays Bank 0", ROM0
 
 ;###############################################################################
 

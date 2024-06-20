@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "City Map Draw Power Lines Functions Bank 0",ROM0
+SECTION "City Map Draw Power Lines Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ TypeBuildingHasElectricity:: ; preserves c, de, hl
 
 ;###############################################################################
 
-    SECTION "City Map Draw Power Lines Functions",ROMX
+SECTION "City Map Draw Power Lines Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

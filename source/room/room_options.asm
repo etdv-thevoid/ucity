@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
-    INCLUDE "room_game.inc"
-    INCLUDE "text.inc"
+INCLUDE "money.inc"
+INCLUDE "room_game.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Room Options Variables",WRAM0
+SECTION "Room Options Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ options_menu_blink_frames: DS 1 ; frames left to change status
 
 ;###############################################################################
 
-    SECTION "Room Options Data",ROMX
+SECTION "Room Options Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "money.inc"
+INCLUDE "money.inc"
 
 ;###############################################################################
 
-    SECTION "Money Variables",WRAM0
+SECTION "Money Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ MoneyWRAM:: DS MONEY_AMOUNT_SIZE ; BCD, LSB first, LSB in lower nibbles
 
 ;###############################################################################
 
-    SECTION "Money Code",ROM0 ; ROM 0 is needed!
+SECTION "Money Code",ROM0 ; ROM 0 is needed!
 
 ;-------------------------------------------------------------------------------
 

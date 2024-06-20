@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "apa.inc"
-    INCLUDE "room_game.inc"
+INCLUDE "apa.inc"
+INCLUDE "room_game.inc"
 
 ;###############################################################################
 
-    SECTION "All Points Addressable Variables",WRAM0
+SECTION "All Points Addressable Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ pixel_stream_row_buffers: DS (APA_BUFFER_ROWS*2)
 
 ;###############################################################################
 
-    SECTION "All Points Addressable Functions",ROMX
+SECTION "All Points Addressable Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -529,7 +529,7 @@ ENDC
 
 ;###############################################################################
 
-    SECTION "All Points Addressable Functions Bank 0",ROM0
+SECTION "All Points Addressable Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

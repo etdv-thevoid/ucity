@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Building Density Functions Bank 0",ROM0
+SECTION "Building Density Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ ENDM
 
 ;###############################################################################
 
-    SECTION "Building Density Data",ROMX
+SECTION "Building Density Data",ROMX
 
 ;-------------------------------------------------------------------------------
 

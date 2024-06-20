@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "building_info.inc"
 
 ;###############################################################################
 
-    SECTION "City Map Draw Building Variables",HRAM
+SECTION "City Map Draw Building Variables",HRAM
 
 ;-------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ delete_tile: DS 2 ; Tile that will be drawn on deleted buildings. LSB first
 
 ;###############################################################################
 
-    SECTION "City Map Draw Building Functions",ROMX
+SECTION "City Map Draw Building Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -363,7 +363,7 @@ MapDrawBuilding:: ; Puts a building at the cursor. Check money and terrain.
 
 ;###############################################################################
 
-    SECTION "City Map Draw Building Functions Bank 0",ROM0
+SECTION "City Map Draw Building Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "text.inc"
-    INCLUDE "text_messages.inc"
+INCLUDE "text.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Text Messages Functions",ROMX,BANK[ROM_BANK_TEXT_MSG]
+SECTION "Text Messages Functions",ROMX,BANK[ROM_BANK_TEXT_MSG]
 
 ;-------------------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ MSG_POINTERS: ; Array of pointer to messages. LSB first
 
 ;###############################################################################
 
-    SECTION "Text Messages Variables",WRAM0
+SECTION "Text Messages Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ msg_custom_text: DS MSG_CUSTOM_LENGTH+1 ; storage for custom msg + terminator
 
 ;###############################################################################
 
-    SECTION "Text Messages Functions Bank 0",ROM0
+SECTION "Text Messages Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

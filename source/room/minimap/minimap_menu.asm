@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "room_minimap.inc"
+INCLUDE "room_game.inc"
+INCLUDE "room_minimap.inc"
 
 ;###############################################################################
 
-    SECTION "Minimap Menu Variables",WRAM0
+SECTION "Minimap Menu Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ minimap_cursor_y_offset_countdown: DS 1 ; frames to move
 
 ;###############################################################################
 
-    SECTION "Minimap Menu Data Functions",ROMX
+SECTION "Minimap Menu Data Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -374,7 +374,7 @@ MinimapMenuLoadGFX::
 
 ;###############################################################################
 
-    SECTION "Minimap Menu Code Bank 0",ROM0
+SECTION "Minimap Menu Code Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

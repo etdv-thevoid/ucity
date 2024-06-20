@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_graphs.inc"
-    INCLUDE "text.inc"
+INCLUDE "room_graphs.inc"
+INCLUDE "text.inc"
 
 ;###############################################################################
 
-    SECTION "Total Population Graph Functions",ROMX
+SECTION "Total Population Graph Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

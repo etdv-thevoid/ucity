@@ -20,18 +20,18 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
-    INCLUDE "building_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
+INCLUDE "building_info.inc"
 
 ;###############################################################################
 
-    SECTION "City Map Draw Menu Variables",WRAM0
+SECTION "City Map Draw Menu Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ cpu_busy_icon_active: DS 1
 
 ;###############################################################################
 
-    SECTION "City Map Draw Menu Functions",ROMX
+SECTION "City Map Draw Menu Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 
@@ -968,7 +968,7 @@ BuildOverlayIconRefreshPosition:
 
 ;###############################################################################
 
-    SECTION "City Map Draw Menu Functions Bank 0",ROM0
+SECTION "City Map Draw Menu Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 

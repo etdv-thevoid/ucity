@@ -20,17 +20,17 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "room_game.inc"
-    INCLUDE "tileset_info.inc"
+INCLUDE "room_game.inc"
+INCLUDE "tileset_info.inc"
 
 ;###############################################################################
 
-    SECTION "Power Helper Variables",HRAM
+SECTION "Power Helper Variables",HRAM
 
 ;-------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ power_plant_energy_left: DS 2 ; LSB first
 
 ;###############################################################################
 
-    SECTION "Simulation Power Functions",ROMX
+SECTION "Simulation Power Functions",ROMX
 
 ;-------------------------------------------------------------------------------
 

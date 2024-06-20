@@ -20,16 +20,16 @@
 ;
 ;###############################################################################
 
-    INCLUDE "hardware.inc"
-    INCLUDE "engine.inc"
+INCLUDE "hardware.inc"
+INCLUDE "engine.inc"
 
 ;-------------------------------------------------------------------------------
 
-    INCLUDE "text_messages.inc"
+INCLUDE "text_messages.inc"
 
 ;###############################################################################
 
-    SECTION "Persistent Messages Variables",WRAM0
+SECTION "Persistent Messages Variables",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ persistent_msg_flags:: DS BYTES_SAVE_PERSISTENT_MSG
 
 ;###############################################################################
 
-    SECTION "Persistent Messages Functions Bank 0",ROM0
+SECTION "Persistent Messages Functions Bank 0",ROM0
 
 ;-------------------------------------------------------------------------------
 
