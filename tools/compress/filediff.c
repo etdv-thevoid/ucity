@@ -20,8 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int file_load(const char * path, void ** buffer, size_t * size_)
 {
@@ -31,7 +32,7 @@ int file_load(const char * path, void ** buffer, size_t * size_)
     FILE * f = fopen(path, "rb");
     if(f == NULL)
     {
-        printf("Couldn't be open: %s\n", path);
+        fprintf(stderr, "Couldn't be open: %s\n", path);
         return 1;
     }
 
@@ -41,7 +42,7 @@ int file_load(const char * path, void ** buffer, size_t * size_)
     if(size_) *size_ = size;
     if(size == 0)
     {
-        printf("Empty file: %s\n", path);
+        fprintf(stderr, "Empty file: %s\n", path);
         fclose(f);
         return 1;
     }
@@ -50,14 +51,14 @@ int file_load(const char * path, void ** buffer, size_t * size_)
     *buffer = calloc(size, 1);
     if(*buffer == NULL)
     {
-        printf("Not enought memory to load: %s\n", path);
+        fprintf(stderr, "Not enought memory to load: %s\n", path);
         fclose(f);
         return 1;
     }
 
     if(fread(*buffer, size, 1, f) != 1)
     {
-        printf("Error while reading: %s\n", path);
+        fprintf(stderr, "Error while reading: %s\n", path);
         fclose(f);
         return 1;
     }
@@ -100,13 +101,13 @@ int main(int argc, char * argv[])
 
     if (!f)
     {
-        printf("Failed to open: %s\n", argv[2]);
+        fprintf(stderr, "Failed to open: %s\n", argv[2]);
         return 1;
     }
 
     if (fwrite(buffer, sizeof(char), size, f) != size)
     {
-        printf("Failed to write: %s\n", argv[2]);
+        fprintf(stderr, "Failed to write: %s\n", argv[2]);
         fclose(f);
         return 1;
     }

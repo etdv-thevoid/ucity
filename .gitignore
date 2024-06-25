@@ -10,8 +10,9 @@
 # Ignore C objects
 *.o
 
-# Ignore MOD->ASM intermidiate objects
+# Ignore intermidiate objects
 *.s
+*.out
 
 # Ignore RGBDS objects
 *.obj

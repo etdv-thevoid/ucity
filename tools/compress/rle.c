@@ -179,7 +179,7 @@ void RLE_Decode(char *filename) {
     if (!(len & RLE_MASK)) {
       len = (len & RLE_LENGTH) + 1;
       if (raw + len > raw_end) {
-        printf(", WARNING: wrong decoded length!");
+        fprintf(stderr, ", WARNING: wrong decoded length!");
         len = raw_end - raw;
       }
       if (pak + len > pak_end) {
@@ -189,7 +189,7 @@ void RLE_Decode(char *filename) {
     } else {
       len = (len & RLE_LENGTH) + RLE_THRESHOLD + 1;
       if (raw + len > raw_end) {
-        printf(", WARNING: wrong decoded length!");
+        fprintf(stderr, ", WARNING: wrong decoded length!");
         len = raw_end - raw;
       }
       while (len--) *raw++ = *pak;
@@ -200,7 +200,7 @@ void RLE_Decode(char *filename) {
 
   raw_len = raw - raw_buffer;
 
-  if (raw != raw_end) printf(", WARNING: unexpected end of encoded file!");
+  if (raw != raw_end) fprintf(stderr, ", WARNING: unexpected end of encoded file!");
 
   Save(filename, raw_buffer, raw_len);
 
