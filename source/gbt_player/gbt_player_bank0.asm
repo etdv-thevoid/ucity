@@ -1,43 +1,19 @@
 ;###############################################################################
-;#                                                                             #
-;#                                                                             #
-;#                              GBT PLAYER  3.0.5                              #
-;#                                                                             #
-;#                                             Contact: antonio_nd@outlook.com #
+;
+; GBT Player v3.1.0
+;
+; SPDX-License-Identifier: MIT
+;
+; Copyright (c) 2009-2021, Antonio Niño Díaz <antonio_nd@outlook.com>
+;
 ;###############################################################################
 
-; Copyright (c) 2009-2016, Antonio Niño Díaz (AntonioND)
-; All rights reserved.
-;
-; Redistribution and use in source and binary forms, with or without
-; modification, are permitted provided that the following conditions are met:
-;
-; * Redistributions of source code must retain the above copyright notice, this
-;  list of conditions and the following disclaimer.
-;
-; * Redistributions in binary form must reproduce the above copyright notice,
-;   this list of conditions and the following disclaimer in the documentation
-;   and/or other materials provided with the distribution.
-;
-; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-; FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-; DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-; SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-; OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-; OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    INCLUDE "hardware.inc"
+    INCLUDE "gbt_player.inc"
 
 ;###############################################################################
 
-INCLUDE "hardware.inc"
-INCLUDE "gbt_player.inc"
-
-;###############################################################################
-
-SECTION "GBT_VAR_1",WRAM0
+    SECTION "GBT_VAR_1",WRAM0
 
 ;-------------------------------------------------------------------------------
 
@@ -92,7 +68,7 @@ gbt_update_pattern_pointers:: DS 1 ; set to 1 by jump effects
 
 ;###############################################################################
 
-SECTION "GBT_BANK0",ROM0
+    SECTION "GBT_BANK0",ROM0
 
 ;-------------------------------------------------------------------------------
 
@@ -148,6 +124,33 @@ ENDC
     ld      [gbt_current_step_data_ptr],a
     ld      a,h
     ld      [gbt_current_step_data_ptr+1],a
+
+    ret
+
+;-------------------------------------------------------------------------------
+
+gbt_get_pattern_ptr_banked:: ; a = pattern number
+
+    push    de
+    call    gbt_get_pattern_ptr
+    pop     de
+
+    ld      hl,gbt_current_step_data_ptr
+    ld      a,[hl+]
+    ld      b,a
+    ld      a,[hl]
+    or      a,b
+    jr      nz,.dont_loop
+    xor     a,a
+    ld      [gbt_current_pattern], a
+.dont_loop:
+
+IF DEF(GBT_USE_MBC5_512BANKS)
+    xor     a,a
+    ld      [$3000],a
+ENDC
+    ld      a,$01
+    ld      [$2000],a ; MBC1, MBC3, MBC5 - Set bank 1
 
     ret
 
@@ -232,34 +235,34 @@ ENDC
     ld      [gbt_cut_note_tick+3],a
 
     ld      a,$80
-    ldh     [rNR52],a
+    ld      [rNR52],a
     ld      a,$00
-    ldh     [rNR51],a
+    ld      [rNR51],a
     ld      a,$00 ; 0%
-    ldh     [rNR50],a
+    ld      [rNR50],a
 
     xor     a,a
-    ldh     [rNR10],a
-    ldh     [rNR11],a
-    ldh     [rNR12],a
-    ldh     [rNR13],a
-    ldh     [rNR14],a
-    ldh     [rNR21],a
-    ldh     [rNR22],a
-    ldh     [rNR23],a
-    ldh     [rNR24],a
-    ldh     [rNR30],a
-    ldh     [rNR31],a
-    ldh     [rNR32],a
-    ldh     [rNR33],a
-    ldh     [rNR34],a
-    ldh     [rNR41],a
-    ldh     [rNR42],a
-    ldh     [rNR43],a
-    ldh     [rNR44],a
+    ld      [rNR10],a
+    ld      [rNR11],a
+    ld      [rNR12],a
+    ld      [rNR13],a
+    ld      [rNR14],a
+    ld      [rNR21],a
+    ld      [rNR22],a
+    ld      [rNR23],a
+    ld      [rNR24],a
+    ld      [rNR30],a
+    ld      [rNR31],a
+    ld      [rNR32],a
+    ld      [rNR33],a
+    ld      [rNR34],a
+    ld      [rNR41],a
+    ld      [rNR42],a
+    ld      [rNR43],a
+    ld      [rNR44],a
 
     ld      a,$77 ; 100%
-    ldh     [rNR50],a
+    ld      [rNR50],a
 
     ld      a,$01
     ld      [gbt_playing],a
@@ -271,9 +274,26 @@ ENDC
 gbt_pause:: ; a = pause/unpause
     ld      [gbt_playing],a
     or      a,a
-    ret     z
+    jr      nz,.gbt_pause_unmute
+
+    ; Silence all channels
     xor     a,a
-    ldh     [rNR50],a
+    ld      [rNR51],a
+
+    ret
+
+.gbt_pause_unmute: ; Unmute sound if playback is resumed
+
+    ; Restore panning status
+    ld      hl,gbt_pan
+    ld      a,[hl+]
+    or      a,[hl]
+    inc     hl
+    or      a,[hl]
+    inc     hl
+    or      a,[hl]
+    ld      [rNR51],a
+
     ret
 
 ;-------------------------------------------------------------------------------
@@ -287,9 +307,9 @@ gbt_loop:: ; a = loop/don't loop
 gbt_stop::
     xor     a,a
     ld      [gbt_playing],a
-    ldh     [rNR50],a
-    ldh     [rNR51],a
-    ldh     [rNR52],a
+    ld      [rNR50],a
+    ld      [rNR51],a
+    ld      [rNR52],a
     ret
 
 ;-------------------------------------------------------------------------------

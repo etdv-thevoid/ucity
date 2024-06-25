@@ -1,43 +1,19 @@
 ;###############################################################################
-;#                                                                             #
-;#                                                                             #
-;#                              GBT PLAYER  3.0.5                              #
-;#                                                                             #
-;#                                             Contact: antonio_nd@outlook.com #
+;
+; GBT Player v3.1.0
+;
+; SPDX-License-Identifier: MIT
+;
+; Copyright (c) 2009-2020 Antonio Niño Díaz <antonio_nd@outlook.com>
+;
 ;###############################################################################
 
-; Copyright (c) 2009-2016, Antonio Ni�o D�az (AntonioND)
-; All rights reserved.
-;
-; Redistribution and use in source and binary forms, with or without
-; modification, are permitted provided that the following conditions are met:
-;
-; * Redistributions of source code must retain the above copyright notice, this
-;  list of conditions and the following disclaimer.
-;
-; * Redistributions in binary form must reproduce the above copyright notice,
-;   this list of conditions and the following disclaimer in the documentation
-;   and/or other materials provided with the distribution.
-;
-; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-; FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-; DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-; SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-; OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-; OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    INCLUDE "hardware.inc"
+    INCLUDE "gbt_player.inc"
 
 ;###############################################################################
 
-INCLUDE "hardware.inc"
-INCLUDE "gbt_player.inc"
-
-;###############################################################################
-
-SECTION "GBT_BANK1",ROMX,BANK[1]
+    SECTION "GBT_BANK1",ROMX,BANK[1]
 
 ;-------------------------------------------------------------------------------
 
@@ -234,16 +210,16 @@ gbt_channel_1_handle:: ; de = info
 channel1_refresh_registers:
 
     xor     a,a
-    ldh     [rNR10],a
+    ld      [rNR10],a
     ld      a,[gbt_instr+0]
-    ldh     [rNR11],a
+    ld      [rNR11],a
     ld      a,[gbt_vol+0]
-    ldh     [rNR12],a
+    ld      [rNR12],a
     ld      a,[gbt_freq+0*2+0]
-    ldh     [rNR13],a
+    ld      [rNR13],a
     ld      a,[gbt_freq+0*2+1]
     or      a,$80 ; start
-    ldh     [rNR14],a
+    ld      [rNR14],a
 
     ret
 
@@ -263,9 +239,9 @@ channel1_update_effects: ; returns 1 in a if it needed to update sound registers
     ld      [gbt_cut_note_tick+0],a ; disable cut note
 
     xor     a,a ; vol = 0
-    ldh     [rNR12],a
+    ld      [rNR12],a
     ld      a,$80 ; start
-    ldh     [rNR14],a
+    ld      [rNR14],a
 
 .dont_cut:
 
@@ -380,8 +356,8 @@ gbt_channel_1_set_effect: ; a = effect, de = pointer to data.
 .gbt_ch1_pan:
     and     a,$11
     ld      [gbt_pan+0],a
-    ld      a,1
-    ret ; ret 1
+    xor     a,a
+    ret ; ret 0 do not update registers, only NR51 at end.
 
 .gbt_ch1_arpeggio:
     ld      b,a ; b = params
@@ -569,14 +545,14 @@ gbt_channel_2_handle:: ; de = info
 channel2_refresh_registers:
 
     ld      a,[gbt_instr+1]
-    ldh     [rNR21],a
+    ld      [rNR21],a
     ld      a,[gbt_vol+1]
-    ldh     [rNR22],a
+    ld      [rNR22],a
     ld      a,[gbt_freq+1*2+0]
-    ldh     [rNR23],a
+    ld      [rNR23],a
     ld      a,[gbt_freq+1*2+1]
     or      a,$80 ; start
-    ldh     [rNR24],a
+    ld      [rNR24],a
 
     ret
 
@@ -596,9 +572,9 @@ channel2_update_effects: ; returns 1 in a if it needed to update sound registers
     ld      [gbt_cut_note_tick+1],a ; disable cut note
 
     xor     a,a ; vol = 0
-    ldh     [rNR22],a
+    ld      [rNR22],a
     ld      a,$80 ; start
-    ldh     [rNR24],a
+    ld      [rNR24],a
 
 .dont_cut:
 
@@ -713,8 +689,8 @@ gbt_channel_2_set_effect: ; a = effect, de = pointer to data
 .gbt_ch2_pan:
     and     a,$22
     ld      [gbt_pan+1],a
-    ld      a,1
-    ret ; ret 1
+    xor     a,a
+    ret ; ret 0 do not update registers, only NR51 at end.
 
 .gbt_ch2_arpeggio:
     ld      b,a ; b = params
@@ -891,7 +867,7 @@ gbt_channel_3_handle:: ; de = info
 channel3_refresh_registers:
 
     xor     a,a
-    ldh     [rNR30],a ; disable
+    ld      [rNR30],a ; disable
 
     ld      a,[gbt_channel3_loaded_instrument]
     ld      b,a
@@ -900,17 +876,17 @@ channel3_refresh_registers:
     call    nz,gbt_channel3_load_instrument ; a = instrument
 
     ld      a,$80
-    ldh     [rNR30],a ; enable
+    ld      [rNR30],a ; enable
 
     xor     a,a
-    ldh     [rNR31],a
+    ld      [rNR31],a
     ld      a,[gbt_vol+2]
-    ldh     [rNR32],a
+    ld      [rNR32],a
     ld      a,[gbt_freq+2*2+0]
-    ldh     [rNR33],a
+    ld      [rNR33],a
     ld      a,[gbt_freq+2*2+1]
     or      a,$80 ; start
-    ldh     [rNR34],a
+    ld      [rNR34],a
 
     ret
 
@@ -953,12 +929,12 @@ channel3_update_effects: ; returns 1 in a if it needed to update sound registers
     ld      [gbt_cut_note_tick+2],a ; disable cut note
 
     ld      a,$80
-    ldh     [rNR30],a ; enable
+    ld      [rNR30],a ; enable
 
     xor     a,a ; vol = 0
-    ldh     [rNR32],a
+    ld      [rNR32],a
     ld      a,$80 ; start
-    ldh     [rNR34],a
+    ld      [rNR34],a
 
 .dont_cut:
 
@@ -1073,8 +1049,8 @@ gbt_channel_3_set_effect: ; a = effect, de = pointer to data
 .gbt_ch3_pan:
     and     a,$44
     ld      [gbt_pan+2],a
-    ld      a,1
-    ret ; ret 1
+    xor     a,a
+    ret ; ret 0 do not update registers, only NR51 at end.
 
 .gbt_ch3_arpeggio:
     ld      b,a ; b = params
@@ -1193,7 +1169,7 @@ gbt_channel_4_handle:: ; de = info
 
     ; Has instrument
 
-    and     a,$1F
+    and     a,$0F
     ld      hl,gbt_noise
     ld      c,a
     ld      b,0
@@ -1236,13 +1212,13 @@ gbt_channel_4_handle:: ; de = info
 channel4_refresh_registers:
 
     xor     a,a
-    ldh     [rNR41],a
+    ld      [rNR41],a
     ld      a,[gbt_vol+3]
-    ldh     [rNR42],a
+    ld      [rNR42],a
     ld      a,[gbt_instr+3]
-    ldh     [rNR43],a
+    ld      [rNR43],a
     ld      a,$80 ; start
-    ldh     [rNR44],a
+    ld      [rNR44],a
 
     ret
 
@@ -1262,9 +1238,9 @@ channel4_update_effects: ; returns 1 in a if it needed to update sound registers
     ld      [gbt_cut_note_tick+3],a ; disable cut note
 
     xor     a,a ; vol = 0
-    ldh     [rNR42],a
+    ld      [rNR42],a
     ld      a,$80 ; start
-    ldh     [rNR44],a
+    ld      [rNR44],a
 
 .dont_cut:
 
@@ -1310,10 +1286,10 @@ gbt_channel_4_set_effect: ; a = effect, de = pointer to data
     DW  gbt_ch1234_nop
 
 .gbt_ch4_pan:
-    and     a,$44
+    and     a,$88
     ld      [gbt_pan+3],a
-    ld      a,1
-    ret ; ret 1
+    xor     a,a
+    ret ; ret 0 do not update registers, only NR51 at end.
 
 .gbt_ch4_cut_note:
     ld      [gbt_cut_note_tick+3],a
@@ -1343,7 +1319,11 @@ gbt_ch1234_jump_pattern:
 gbt_ch1234_jump_position:
     ld      [gbt_current_step],a
     ld      hl,gbt_current_pattern
-    inc [hl]
+    inc     [hl]
+
+    ; Check to see if jump puts us past end of song
+    ld      a,[hl]
+    call    gbt_get_pattern_ptr_banked
     ld      a,1
     ld      [gbt_update_pattern_pointers],a
     xor     a,a ;ret 0
@@ -1380,7 +1360,7 @@ gbt_update_bank1::
     or      a,[hl]
     inc     hl
     or      a,[hl]
-    ldh     [rNR51],a ; handle panning...
+    ld      [rNR51],a ; handle panning...
 
     ret
 
