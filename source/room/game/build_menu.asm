@@ -125,7 +125,7 @@ ENDM
 ICON_TO_BUILDING_PAL: ; Get palette and building from icon
     ICON_SET_BUILDING Icon_Group_Delete, B_None, 5,5
     ICON_SET_BUILDING Icon_Group_RCI, B_None, 0,0
-    ICON_SET_BUILDING Icon_Group_RoadTrainPower, B_None, 0,0
+    ICON_SET_BUILDING Icon_Group_RoadTrainPower, B_None, 0,4
     ICON_SET_BUILDING Icon_Group_PoliceFiremenHospital, B_None, 2,1
     ICON_SET_BUILDING Icon_Group_ParksAndRecreation, B_None, 3,0
     ICON_SET_BUILDING Icon_Group_Education, B_None, 0,0
@@ -186,7 +186,7 @@ ICON_MAP: ; Order of icons is right to left
     DB Icon_Residential, Icon_Commercial, Icon_Industrial
 
     DB Icon_Group_RoadTrainPower
-    DB Icon_Road, Icon_Train, Icon_PowerLines
+    DB Icon_PowerLines, Icon_Road, Icon_Train
 
     DB Icon_Group_PoliceFiremenHospital
     DB Icon_Police, Icon_Firemen, Icon_Hospital
@@ -198,7 +198,7 @@ ICON_MAP: ; Order of icons is right to left
     DB Icon_School, Icon_HighSchool, Icon_University
 
     DB Icon_Group_Culture
-    DB Icon_Museum, Icon_Library, Icon_NULL
+    DB Icon_Library, Icon_Museum, Icon_NULL
 
     DB Icon_Group_Transport
     DB Icon_Port, Icon_Airport, Icon_NULL
