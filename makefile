@@ -157,7 +157,6 @@ TOOLS_OPTS :=
 
 GFX_OPTS :=
 
-%/build_select_sprites.2bpp: GFX_OPTS += -x 4
 %/graphs_menu_tiles.2bpp: GFX_OPTS += -x 3
 %/minimap_menu_tiles.2bpp: GFX_OPTS += -x 3
 %/text_tiles.2bpp: GFX_OPTS += -x 2

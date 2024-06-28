@@ -76,7 +76,7 @@ BUILD_SELECT_SPRITES_TILESET:
     DEF MENU_BASE_Y EQU 16+(-8) ; 8 pixels overflow from top
 
     ; Building selection menu arrow icon equates
-    DEF BUILD_SELECT_CURSOR_TILE    EQU $10
+    DEF BUILD_SELECT_CURSOR_TILE    EQU $15
     DEF BUILD_SELECT_CURSOR_PALETTE EQU 5
 
     ; CPU busy icon equates
@@ -84,7 +84,7 @@ BUILD_SELECT_SPRITES_TILESET:
     DEF CPU_BUSY_ICON_XCOORD        EQU ((160-8)+8)
     DEF CPU_BUSY_ICON_YCOORD_TOP    EQU ((0)+16)
     DEF CPU_BUSY_ICON_YCOORD_BOTTOM EQU ((144-8)+16)
-    DEF CPU_BUSY_ICON_TILE          EQU $12 ; Made of 2 8x8 tiles, the second one empty
+    DEF CPU_BUSY_ICON_TILE          EQU $17 ; Made of 2 8x8 tiles, the second one empty
     DEF CPU_BUSY_ICON_PALETTE       EQU 1
 
 ;-------------------------------------------------------------------------------
