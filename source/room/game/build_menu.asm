@@ -124,12 +124,12 @@ ENDM
 
 ICON_TO_BUILDING_PAL: ; Get palette and building from icon
     ICON_SET_BUILDING Icon_Group_Delete, B_None, 5,5
-    ICON_SET_BUILDING Icon_Group_RCI, B_None, 0,0
+    ICON_SET_BUILDING Icon_Group_RCI, B_None, 5,3
     ICON_SET_BUILDING Icon_Group_RoadTrainPower, B_None, 0,4
     ICON_SET_BUILDING Icon_Group_PoliceFiremenHospital, B_None, 2,1
     ICON_SET_BUILDING Icon_Group_ParksAndRecreation, B_None, 3,0
-    ICON_SET_BUILDING Icon_Group_Education, B_None, 0,0
-    ICON_SET_BUILDING Icon_Group_Culture, B_None, 3,3
+    ICON_SET_BUILDING Icon_Group_Culture, B_None, 0,0
+    ICON_SET_BUILDING Icon_Group_Education, B_None, 2,2
     ICON_SET_BUILDING Icon_Group_Transport, B_None, 0,0
     ICON_SET_BUILDING Icon_Group_PowerFossil, B_None, 0,5
     ICON_SET_BUILDING Icon_Group_PowerRenewable, B_None, 2,5
