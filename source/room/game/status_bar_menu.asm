@@ -683,9 +683,9 @@ STATUS_BAR_CURSOR_COORDINATE_OFFSET:
     DW 8*32+CURSOR_X+$9800 ; Bank
     DW 9*32+CURSOR_X+$9800 ; Minimaps
     DW 10*32+CURSOR_X+$9800 ; Graphs
-    DW 11*32+CURSOR_X+$9800 ; Options
-    DW 12*32+CURSOR_X+$9800 ; Pause/Unpause
-    DW 13*32+CURSOR_X+$9800 ; Help
+    DW 11*32+CURSOR_X+$9800 ; Stats
+    DW 13*32+CURSOR_X+$9800 ; Pause/Unpause
+    DW 14*32+CURSOR_X+$9800 ; Options
     DW 15*32+CURSOR_X+$9800 ; Save Game
     DW 16*32+CURSOR_X+$9800 ; Main Menu
 

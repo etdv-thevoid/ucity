@@ -73,7 +73,7 @@ OPTIONS_MENU_BG_MAP:
     DEF CURSOR_X EQU 1
 
 OPTIONS_MENU_CURSOR_COORDINATE_OFFSET:
-    DW 5*32+CURSOR_X+$9800 ; Disasters Enable/Disable
+    DW 6*32+CURSOR_X+$9800 ; Disasters Enable/Disable
     DW 7*32+CURSOR_X+$9800 ; Start Fire
     DW 8*32+CURSOR_X+$9800 ; Nuclear Meltdown
     DW 12*32+CURSOR_X+$9800 ; Animations Enable/Disable
@@ -223,7 +223,7 @@ OptionsMenuHandleOption: ; a = selected option
         ld      a,[hl]
         xor     a,1
         ld      [hl],a
-        ld      de,5*32+CURSOR_X+2+$9800
+        ld      de,6*32+CURSOR_X+2+$9800
         call    OptionsMenuDrawEnabledStateAt ; hl = flag, de = VRAM ptr
         ret
 
@@ -423,7 +423,7 @@ RoomOptionsMenu::
     ; Print default values
 
     ld      hl,simulation_disaster_disabled
-    ld      de,5*32+CURSOR_X+2+$9800
+    ld      de,6*32+CURSOR_X+2+$9800
     call    OptionsMenuDrawEnabledStateAt ; hl = flag, de = VRAM ptr
     ld      hl,game_animations_disabled
     ld      de,12*32+CURSOR_X+2+$9800

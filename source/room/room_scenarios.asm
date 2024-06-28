@@ -77,7 +77,7 @@ RoomScenarioSelectRefreshText:
 
     ld      bc,TEXT_INPUT_LENGTH
     ld      d,O_SPACE
-    ld      hl,$9800+32*3+9
+    ld      hl,$9800+32*4+9
     call    vram_memset ; bc = size    d = value    hl = dest address
 
     ; Print
@@ -92,7 +92,7 @@ RoomScenarioSelectRefreshText:
     sub     a,d
     ld      e,a
     ld      d,0
-    ld      hl,$9800+3*32+9
+    ld      hl,$9800+32*4+9
     add     hl,de
     LD_DE_HL ; dest
     LD_HL_BC ; src
@@ -118,7 +118,7 @@ RoomScenarioSelectRefreshText:
             call    BCD_DE_2TILE_HL_LEADING_SPACES
 
             ld      b,10
-            ld      de,$9800+4*32+9
+            ld      de,$9800+32*5+9
             ld      hl,sp+4
             call    vram_copy_fast ; b = size - hl = source address - de = dest
 
@@ -132,7 +132,7 @@ RoomScenarioSelectRefreshText:
 
         ld      b,8
         ld      hl,sp+0
-        ld      de,$9800+5*32+11
+        ld      de,$9800+32*6+11
         call    vram_copy_fast ; b = size - hl = source address - de = dest
 
     add     sp,+10 ; (*) reclaim space

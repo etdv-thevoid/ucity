@@ -154,8 +154,14 @@ RoomCityStatsPrintInfo:
     ; Print Name
     ; ----------
 
-    ld      de,$9800+32*3+9 ; de = pointer in VRAM to write to
+    ld      de,$9800+32*4+9 ; de = pointer in VRAM to write to
     LONG_CALL_ARGS  StatusBarMenuDrawCityName
+
+    ; City class
+    ; ----------
+
+    ld      de,$9800+32*5+9 ; pointer to VRAM destination
+    call    StatusBarMenuDrawCityClass
 
     ; Print population
     ; ----------------
@@ -168,14 +174,8 @@ RoomCityStatsPrintInfo:
     ld      b,10
     ld      hl,sp+0
     LD_DE_HL
-    ld      hl,$9800+32*4+9
+    ld      hl,$9800+32*6+9
     call    vram_nitro_copy
-
-    ; City class
-    ; ----------
-
-    ld      de,$9800+32*5+9 ; pointer to VRAM destination
-    call    StatusBarMenuDrawCityClass
 
     ; Print Date
     ; ----------
@@ -192,7 +192,7 @@ RoomCityStatsPrintInfo:
     ld      b,8
     ld      hl,sp+0
     LD_DE_HL
-    ld      hl,$9800+32*6+11
+    ld      hl,$9800+32*7+11
     call    vram_nitro_copy
 
     ; Print money
@@ -207,7 +207,7 @@ RoomCityStatsPrintInfo:
     ld      b,10
     ld      hl,sp+0
     LD_DE_HL
-    ld      hl,$9800+32*7+9
+    ld      hl,$9800+32*8+9
     call    vram_nitro_copy
 
     ; Print percentage helper
@@ -257,7 +257,7 @@ ENDM
     ld      l,a ; hl = total land
 
     call    CalculateAproxPercentBCD ; hl = de * 100 / hl
-    PRINT_PERCENTAGE    $9800+32*9+15
+    PRINT_PERCENTAGE    $9800+32*10+15
 
     ; Residential developed land / Total developed land
     ; -------------------------------------------------
@@ -280,7 +280,7 @@ ENDM
     ld      l,a ; hl = developed land
 
     call    CalculateAproxPercentBCD ; hl = de * 100 / hl
-    PRINT_PERCENTAGE    $9800+32*10+15
+    PRINT_PERCENTAGE    $9800+32*11+15
 
     ; Commercial developed land / Total developed land
     ; ------------------------------------------------
@@ -303,7 +303,7 @@ ENDM
     ld      l,a ; hl = developed land
 
     call    CalculateAproxPercentBCD ; hl = de * 100 / hl
-    PRINT_PERCENTAGE    $9800+32*11+15
+    PRINT_PERCENTAGE    $9800+32*12+15
 
     ; Industrial developed land / Total developed land
     ; ------------------------------------------------
@@ -326,14 +326,14 @@ ENDM
     ld      l,a ; hl = developed land
 
     call    CalculateAproxPercentBCD ; hl = de * 100 / hl
-    PRINT_PERCENTAGE    $9800+32*12+15
+    PRINT_PERCENTAGE    $9800+32*13+15
 
     ; Traffic
     ; -------
 
     ld      a,[simulation_traffic_jam_num_tiles_percent]
     call    Byte2BCD ; a = byte, returns hl = BCD (H=MSB, L=LSB)
-    PRINT_PERCENTAGE    $9800+32*14+15
+    PRINT_PERCENTAGE    $9800+32*15+15
 
     ; Pollution
     ; ---------
