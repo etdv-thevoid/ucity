@@ -200,6 +200,17 @@ GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
         ret ; return 1 if map has been generated
 .end_start:
 
+    ; Exit if B is pressed and a set map to not generated
+    ld      a,[joy_pressed]
+    and     a,PAD_B
+    jr      z,.end_b
+        xor     a,a
+        ld      [gen_map_generated],a
+        ld      a,1
+        ret ; return 1 with gen_map_generated set to 0
+
+.end_b
+
     xor     a,a
     ret ; return 0
 
@@ -325,6 +336,8 @@ RoomGenerateMap::
     xor     a,a
     ld      [gen_map_room_exit],a
 
+    call    GenMapUpdateGUI
+
 .loop:
 
     call    wait_vbl
@@ -341,6 +354,10 @@ RoomGenerateMap::
     call    WaitReleasedAllKeys
 
     call    SetPalettesAllBlack
+
+    ld      a,[gen_map_generated]
+    and     a,a
+    ret     z ; return 0 and don't gen map tiles
 
     LONG_CALL   map_tilemap_to_real_tiles
 
