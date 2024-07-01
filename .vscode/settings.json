@@ -1,4 +1,11 @@
 {
+    
+    "rgbdsz80.formatting.capitalization": {
+        "language": "lower",
+        "language.hex": "upper",
+        "language.keyword": "upper",
+    },
+    "rgbdsz80.includeAllDocCommentNewlines": true,
     "rgbdsz80.includePath": [
         "",
         ".",
@@ -23,5 +30,6 @@
         "./source/room/graphs/",
         "./source/room/minimap/",
         "./source/simulation/",
-    ]
+    ],
+    "rgbdsz80.showInstructionCompletionSuggestions": true,
 }
