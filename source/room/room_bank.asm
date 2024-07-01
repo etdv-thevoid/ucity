@@ -76,7 +76,7 @@ BankMenuHandleInput: ; If it returns 1, exit room. If 0, continue
 
     ; Exit if B or START are pressed
     ld      a,[joy_pressed]
-    and     a,PAD_B|PAD_START
+    and     a,PADF_B|PADF_START
     jr      z,.end_b_start
         ld      a,1
         ret ; return 1
@@ -92,7 +92,7 @@ BankMenuHandleInput: ; If it returns 1, exit room. If 0, continue
     ; This part is only shown in "loan select" mode
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.end_a ; Accept payment
 
         ld      a,21 ; Number of payments in both cases
@@ -133,7 +133,7 @@ BankMenuHandleInput: ; If it returns 1, exit room. If 0, continue
 .end_a:
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP|PAD_DOWN
+    and     a,PADF_UP|PADF_DOWN
     jr      z,.end_up_down
         call    RoomBankMenuClearCursor
         ld      hl,bank_room_cursor

@@ -291,7 +291,7 @@ MenuCursorBlinkHandle:
 InputHandleMenu:
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.not_a
 
         ld      a,[menu_selection]
@@ -367,7 +367,7 @@ InputHandleMenu:
     ; Handle cursor
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         call    MenuClearCursor
         call    MenuCursorMoveUp
@@ -375,7 +375,7 @@ InputHandleMenu:
         jr      .end_up_down
 .not_up:
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.end_up_down
         call    MenuClearCursor
         call    MenuCursorMoveDown

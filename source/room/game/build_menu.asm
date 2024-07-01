@@ -630,7 +630,7 @@ KeypadHandle:
     ; UP
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         ld      hl,menu_selected_group
         ld      a,[hl]
@@ -646,7 +646,7 @@ KeypadHandle:
     ; DOWN
 
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.not_down
         ld      hl,menu_selected_group
         ld      a,[hl]
@@ -662,7 +662,7 @@ KeypadHandle:
     ; LEFT
 
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.not_left
         ld      hl,menu_selected_item
         ld      a,[hl]
@@ -676,7 +676,7 @@ KeypadHandle:
     ; RIGHT
 
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.not_right
 
         ld      hl,menu_selected_item

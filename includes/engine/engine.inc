@@ -231,27 +231,6 @@ ENDM
     EXPORT  joy_pressed ; Holds keys that have been pressed this frame
     EXPORT  joy_released ; Keys released this frame
 
-;===============================================================================
-;=                                 DEFINITIONS                                 =
-;===============================================================================
-
-    DEF PAD_START   EQU $80
-    DEF PAD_SELECT  EQU $40
-    DEF PAD_B       EQU $20
-    DEF PAD_A       EQU $10
-    DEF PAD_DOWN    EQU $08
-    DEF PAD_UP      EQU $04
-    DEF PAD_LEFT    EQU $02
-    DEF PAD_RIGHT   EQU $01
-
-    DEF PAD_BIT_START   EQU 7
-    DEF PAD_BIT_SELECT  EQU 6
-    DEF PAD_BIT_B       EQU 5
-    DEF PAD_BIT_A       EQU 4
-    DEF PAD_BIT_DOWN    EQU 3
-    DEF PAD_BIT_UP      EQU 2
-    DEF PAD_BIT_LEFT    EQU 1
-    DEF PAD_BIT_RIGHT   EQU 0
 
 ;-------------------------------------------------------------------------------
 ;- rom_handler_init()                                                          -

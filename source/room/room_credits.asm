@@ -55,18 +55,18 @@ CREDITS_SELECT_BG_MAP:
 InputHandleCredits:
 
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_right
 
 .end_right:
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.end_left
 
 .end_left:
 
     ld      a,[joy_pressed]
-    and     a,PAD_A|PAD_START
+    and     a,PADF_A|PADF_START
     jr      z,.end_a_start
 
         ld      a,1
@@ -76,7 +76,7 @@ InputHandleCredits:
 .end_a_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.end_b
 
         ld      a,$FF ; set invalid value

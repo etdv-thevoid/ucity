@@ -148,7 +148,7 @@ GenMapGenerate:
 GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP|PAD_DOWN
+    and     a,PADF_UP|PADF_DOWN
     jr      z,.end_up_down
         ld      hl,gen_map_selection
         ld      a,[hl]
@@ -158,14 +158,14 @@ GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
 .end_up_down:
 
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_right
         ld      hl,gen_map_seed
         inc     [hl]
         call    GenMapUpdateGUI
 .end_right:
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.end_left
         ld      hl,gen_map_seed
         dec     [hl]
@@ -173,7 +173,7 @@ GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
 .end_left:
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.end_a
 
         di ; Entering critical section
@@ -194,7 +194,7 @@ GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
 
     ; Exit if START is pressed and a map is generated
     ld      a,[joy_pressed]
-    and     a,PAD_START
+    and     a,PADF_START
     jr      z,.end_start
         ld      a,[gen_map_generated]
         ret ; return 1 if map has been generated
@@ -202,7 +202,7 @@ GenMapHandleInput: ; If it returns 1, exit room. If 0, continue
 
     ; Exit if B is pressed and a set map to not generated
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.end_b
         xor     a,a
         ld      [gen_map_generated],a

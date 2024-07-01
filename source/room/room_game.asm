@@ -1151,7 +1151,7 @@ InputHandleModeWatch:
     ; If not, handle user input
 
     ld      a,[joy_pressed]
-    and     a,PAD_SELECT
+    and     a,PADF_SELECT
     jr      z,.not_select
 
         call    bg_scroll_in_tile
@@ -1170,7 +1170,7 @@ InputHandleModeWatch:
 .not_select:
 
     ld      a,[joy_pressed]
-    and     a,PAD_START
+    and     a,PADF_START
     jr      z,.not_start
 
         ld      b,GAME_STATE_PAUSE_MENU
@@ -1179,7 +1179,7 @@ InputHandleModeWatch:
 .not_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.not_b
         ld      b,GAME_STATE_SELECT_BUILDING
         call    GameStateMachineStateSet
@@ -1208,7 +1208,7 @@ InputHandleModeWatch:
     ; Check if we have been asked to show the tile information
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     ret     z ; Not pressed, return
 
     add     sp,-20 ; Space for name of the tile
@@ -1235,7 +1235,7 @@ InputHandleModeWatch:
 InputHandleModeEdit:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B|PAD_START|PAD_SELECT  ; Cancel edit mode
+    and     a,PADF_B|PADF_START|PADF_SELECT  ; Cancel edit mode
     jr      z,.not_b
 
         LONG_CALL   BuildSelectMenuHide
@@ -1253,7 +1253,7 @@ InputHandleModeEdit:
 .not_b:
 
 ;    ld      a,[joy_pressed]
-;    and     a,PAD_START
+;    and     a,PADF_START
 ;    jr      z,.not_start
 ;        call    BuildOverlayIconHide
 ;        ld      b,GAME_STATE_PAUSE_MENU
@@ -1262,7 +1262,7 @@ InputHandleModeEdit:
 ;.not_start:
 ;
 ;    ld      a,[joy_pressed]
-;    and     a,PAD_SELECT
+;    and     a,PADF_SELECT
 ;    jr      z,.not_select
 ;        call    BuildOverlayIconHide
 ;        ld      b,GAME_STATE_SELECT_BUILDING
@@ -1297,14 +1297,14 @@ InputHandleModeEdit:
     jr      z,.check_a_new_press ; if there are no difference, check newpress
 
     ld      a,[joy_held] ; if there are differences, check movement while hold
-    and     a,PAD_A
+    and     a,PADF_A
     jr      nz,.end_draw
 
     jr      .end_no_draw
 
 .check_a_new_press:
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      nz,.end_draw
 
 .end_no_draw:
@@ -1328,7 +1328,7 @@ InputHandleModeEdit:
 InputHandleModeSelectBuilding:
 
     ld      a,[joy_released]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.not_a
 
         ; Close menu regardless of the result. This way, either the building
@@ -1364,7 +1364,7 @@ InputHandleModeSelectBuilding:
 .not_a:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B|PAD_SELECT
+    and     a,PADF_B|PADF_SELECT
     jr      z,.not_b_or_select
         LONG_CALL   BuildSelectMenuHide
         ld      b,GAME_STATE_WATCH
@@ -1399,7 +1399,7 @@ InputHandleModeWatchFastMove:
     ; If not, handle user input
 
     ld      a,[joy_pressed]
-    and     a,PAD_A|PAD_B|PAD_SELECT|PAD_START
+    and     a,PADF_A|PADF_B|PADF_SELECT|PADF_START
     jr      z,.not_b
 
         call    bg_scroll_in_tile
@@ -1431,11 +1431,11 @@ InputHandleModeWatchFastMove:
 InputHandleModePauseMenu:
 
     ld      a,[joy_released]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      nz,.exit_menu
 
     ld      a,[joy_pressed]
-    and     a,PAD_START
+    and     a,PADF_START
     jr      nz,.exit_menu
 
     ret
@@ -1475,7 +1475,7 @@ InputHandleModeShowMessage:
     ; until the user presses it again.
 
     ld      a,[joy_released]
-    and     a,PAD_A|PAD_B
+    and     a,PADF_A|PADF_B
     jr      z,.not_a_b
 
         ; Check if the message can be dismissed. This check is here to prevent
@@ -1518,7 +1518,7 @@ InputHandleModeShowMessage:
     ; buttons haven't been held for a frame.
 
     ld      a,[joy_held]
-    and     a,PAD_A|PAD_B
+    and     a,PADF_A|PADF_B
     jr      nz,.held_a_b
 
         ; Allow the message to be dismissed

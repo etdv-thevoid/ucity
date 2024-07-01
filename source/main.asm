@@ -34,8 +34,8 @@ PadDownCount:   DS  1
 PadLeftCount:   DS  1
 PadRightCount:  DS  1
 
-    DEF PAD_AUTOREPEAT_WAIT_INITIAL EQU 10
-    DEF PAD_AUTOREPEAT_WAIT_REPEAT  EQU 4
+    DEF PADF_AUTOREPEAT_WAIT_INITIAL EQU 10
+    DEF PADF_AUTOREPEAT_WAIT_REPEAT  EQU 4
 
 ;###############################################################################
 
@@ -44,7 +44,7 @@ SECTION "Main",ROM0
 ;-------------------------------------------------------------------------------
 
 InitKeyAutorepeat::
-    ld      a,PAD_AUTOREPEAT_WAIT_INITIAL
+    ld      a,PADF_AUTOREPEAT_WAIT_INITIAL
     ld      [PadUpCount],a
     ld      [PadDownCount],a
     ld      [PadLeftCount],a
@@ -56,88 +56,88 @@ KeyAutorepeatHandle::
     ; Up
 
     ld      a,[joy_held]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
 
         ld      hl,PadUpCount
         dec     [hl]
         jr      nz,.end_up
 
-        ld      [hl],PAD_AUTOREPEAT_WAIT_REPEAT
+        ld      [hl],PADF_AUTOREPEAT_WAIT_REPEAT
 
         ld      a,[joy_pressed]
-        or      a,PAD_UP
+        or      a,PADF_UP
         ld      [joy_pressed],a
 
     jr      .end_up
 .not_up:
-    ld      a,PAD_AUTOREPEAT_WAIT_INITIAL
+    ld      a,PADF_AUTOREPEAT_WAIT_INITIAL
     ld      [PadUpCount],a
 .end_up:
 
     ; Down
 
     ld      a,[joy_held]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.not_down
 
         ld      hl,PadDownCount
         dec     [hl]
         jr      nz,.end_down
 
-        ld      [hl],PAD_AUTOREPEAT_WAIT_REPEAT
+        ld      [hl],PADF_AUTOREPEAT_WAIT_REPEAT
 
         ld      a,[joy_pressed]
-        or      a,PAD_DOWN
+        or      a,PADF_DOWN
         ld      [joy_pressed],a
 
     jr      .end_down
 .not_down:
-    ld      a,PAD_AUTOREPEAT_WAIT_INITIAL
+    ld      a,PADF_AUTOREPEAT_WAIT_INITIAL
     ld      [PadDownCount],a
 .end_down:
 
     ; Right
 
     ld      a,[joy_held]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.not_right
 
         ld      hl,PadRightCount
         dec     [hl]
         jr      nz,.end_right
 
-        ld      [hl],PAD_AUTOREPEAT_WAIT_REPEAT
+        ld      [hl],PADF_AUTOREPEAT_WAIT_REPEAT
 
         ld      a,[joy_pressed]
-        or      a,PAD_RIGHT
+        or      a,PADF_RIGHT
         ld      [joy_pressed],a
 
     jr      .end_right
 .not_right:
-    ld      a,PAD_AUTOREPEAT_WAIT_INITIAL
+    ld      a,PADF_AUTOREPEAT_WAIT_INITIAL
     ld      [PadRightCount],a
 .end_right:
 
     ; Left
 
     ld      a,[joy_held]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.not_left
 
         ld      hl,PadLeftCount
         dec     [hl]
         jr      nz,.end_left
 
-        ld      [hl],PAD_AUTOREPEAT_WAIT_REPEAT
+        ld      [hl],PADF_AUTOREPEAT_WAIT_REPEAT
 
         ld      a,[joy_pressed]
-        or      a,PAD_LEFT
+        or      a,PADF_LEFT
         ld      [joy_pressed],a
 
     jr      .end_left
 .not_left:
-    ld      a,PAD_AUTOREPEAT_WAIT_INITIAL
+    ld      a,PADF_AUTOREPEAT_WAIT_INITIAL
     ld      [PadLeftCount],a
 .end_left:
 

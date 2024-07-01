@@ -36,22 +36,22 @@ TrainGetValidRandomDirection: ; d=y,e=x, b=prohibited dir (or -1), returns a=dir
 .skipminus1:
     cp      a,0
     jr      nz,.skip0
-        ld      b,PAD_UP
+        ld      b,PADF_UP
         jr      .end_convert_dir
 .skip0:
     cp      a,1
     jr      nz,.skip1
-        ld      b,PAD_RIGHT
+        ld      b,PADF_RIGHT
         jr      .end_convert_dir
 .skip1:
     cp      a,2
     jr      nz,.skip2
-        ld      b,PAD_DOWN
+        ld      b,PADF_DOWN
         jr      .end_convert_dir
 .skip2:
     cp      a,3
     jr      nz,.skip3
-        ld      b,PAD_LEFT
+        ld      b,PADF_LEFT
         jr      .end_convert_dir
 .skip3:
 
@@ -116,22 +116,22 @@ TrainGetValidRandomDirection: ; d=y,e=x, b=prohibited dir (or -1), returns a=dir
 
     ; Convert flag into train direction
 
-    cp      a,PAD_UP
+    cp      a,PADF_UP
     jr      nz,.not_up
         ld      a,0
         ret
 .not_up:
-    cp      a,PAD_RIGHT
+    cp      a,PADF_RIGHT
     jr      nz,.not_right
         ld      a,1
         ret
 .not_right:
-    cp      a,PAD_DOWN
+    cp      a,PADF_DOWN
     jr      nz,.not_down
         ld      a,2
         ret
 .not_down:
-    ;cp      a,PAD_LEFT
+    ;cp      a,PADF_LEFT
     ;jr      nz,.not_left
         ld      a,3
         ret
@@ -139,23 +139,23 @@ TrainGetValidRandomDirection: ; d=y,e=x, b=prohibited dir (or -1), returns a=dir
 ;    ret
 
 .allowed_directions:
-    DB  PAD_UP|PAD_DOWN     ; T_TRAIN_TB
-    DB  PAD_LEFT|PAD_RIGHT  ; T_TRAIN_LR
-    DB  PAD_RIGHT|PAD_DOWN  ; T_TRAIN_RB
-    DB  PAD_LEFT|PAD_DOWN   ; T_TRAIN_LB
-    DB  PAD_UP|PAD_RIGHT    ; T_TRAIN_TR
-    DB  PAD_UP|PAD_LEFT     ; T_TRAIN_TL
-    DB  PAD_UP|PAD_RIGHT|PAD_DOWN   ; T_TRAIN_TRB
-    DB  PAD_LEFT|PAD_RIGHT|PAD_DOWN ; T_TRAIN_LRB
-    DB  PAD_UP|PAD_LEFT|PAD_DOWN    ; T_TRAIN_TLB
-    DB  PAD_UP|PAD_RIGHT|PAD_LEFT   ; T_TRAIN_TLR
-    DB  PAD_UP|PAD_RIGHT|PAD_DOWN|PAD_LEFT  ; T_TRAIN_TLRB
-    DB  PAD_LEFT|PAD_RIGHT  ; T_TRAIN_LR_ROAD
-    DB  PAD_UP|PAD_DOWN     ; T_TRAIN_TB_ROAD
-    DB  PAD_UP|PAD_DOWN     ; T_TRAIN_TB_POWER_LINES
-    DB  PAD_LEFT|PAD_RIGHT  ; T_TRAIN_LR_POWER_LINES
-    DB  PAD_UP|PAD_DOWN     ; T_TRAIN_TB_BRIDGE
-    DB  PAD_LEFT|PAD_RIGHT  ; T_TRAIN_LR_BRIDGE
+    DB  PADF_UP|PADF_DOWN     ; T_TRAIN_TB
+    DB  PADF_LEFT|PADF_RIGHT  ; T_TRAIN_LR
+    DB  PADF_RIGHT|PADF_DOWN  ; T_TRAIN_RB
+    DB  PADF_LEFT|PADF_DOWN   ; T_TRAIN_LB
+    DB  PADF_UP|PADF_RIGHT    ; T_TRAIN_TR
+    DB  PADF_UP|PADF_LEFT     ; T_TRAIN_TL
+    DB  PADF_UP|PADF_RIGHT|PADF_DOWN   ; T_TRAIN_TRB
+    DB  PADF_LEFT|PADF_RIGHT|PADF_DOWN ; T_TRAIN_LRB
+    DB  PADF_UP|PADF_LEFT|PADF_DOWN    ; T_TRAIN_TLB
+    DB  PADF_UP|PADF_RIGHT|PADF_LEFT   ; T_TRAIN_TLR
+    DB  PADF_UP|PADF_RIGHT|PADF_DOWN|PADF_LEFT  ; T_TRAIN_TLRB
+    DB  PADF_LEFT|PADF_RIGHT  ; T_TRAIN_LR_ROAD
+    DB  PADF_UP|PADF_DOWN     ; T_TRAIN_TB_ROAD
+    DB  PADF_UP|PADF_DOWN     ; T_TRAIN_TB_POWER_LINES
+    DB  PADF_LEFT|PADF_RIGHT  ; T_TRAIN_LR_POWER_LINES
+    DB  PADF_UP|PADF_DOWN     ; T_TRAIN_TB_BRIDGE
+    DB  PADF_LEFT|PADF_RIGHT  ; T_TRAIN_LR_BRIDGE
 
 ;-------------------------------------------------------------------------------
 

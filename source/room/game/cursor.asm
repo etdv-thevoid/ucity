@@ -303,7 +303,7 @@ CursorAnimate::
 
 ;-------------------------------------------------------------------------------
 
-CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
+CursorMovePADF_hor: ; returns PADF_RIGHT and similar flags ORed if it has moved
 
     ld      e,0 ; set flags here
 
@@ -312,7 +312,7 @@ CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
 
     ld      hl,CursorTileX
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.left_end ; If not pressed, skip
         ld      a,[bg_x]
         cp      a,0
@@ -332,7 +332,7 @@ CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
         ld      a,1
         ld      [CursorNeedsRefresh],a
         call    CursorRefreshCoordFromTile
-        ld      e,PAD_LEFT
+        ld      e,PADF_LEFT
 .left_end:
 
     ; Right
@@ -340,7 +340,7 @@ CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
 
     ld      hl,CursorTileX
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.right_end ; If not pressed, skip
         ld      b,[hl]
         ld      a,[CursorSizeX]
@@ -369,7 +369,7 @@ CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
         ld      [CursorNeedsRefresh],a
         call    CursorRefreshCoordFromTile
         ld      a,e
-        or      a,PAD_RIGHT
+        or      a,PADF_RIGHT
         ld      e,a
 .right_end:
 
@@ -382,7 +382,7 @@ CursorMovePAD_hor: ; returns PAD_RIGHT and similar flags ORed if it has moved
 
 ;-------------------------------------------------------------------------------
 
-CursorMovePAD_ver: ; returns PAD_RIGHT and similar flags ORed if it has moved
+CursorMovePADF_ver: ; returns PADF_RIGHT and similar flags ORed if it has moved
 
     ld      e,0 ; set flags here
 
@@ -391,7 +391,7 @@ CursorMovePAD_ver: ; returns PAD_RIGHT and similar flags ORed if it has moved
 
     ld      hl,CursorTileY
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.up_end ; If not pressed, skip
         ld      a,[bg_y]
         cp      a,0
@@ -411,7 +411,7 @@ CursorMovePAD_ver: ; returns PAD_RIGHT and similar flags ORed if it has moved
         ld      a,1
         ld      [CursorNeedsRefresh],a
         call    CursorRefreshCoordFromTile
-        ld      e,PAD_UP
+        ld      e,PADF_UP
 .up_end:
 
     ; Down
@@ -419,7 +419,7 @@ CursorMovePAD_ver: ; returns PAD_RIGHT and similar flags ORed if it has moved
 
     ld      hl,CursorTileY
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.down_end ; If not pressed, skip
         ld      b,[hl]
         ld      a,[CursorSizeY]
@@ -448,7 +448,7 @@ CursorMovePAD_ver: ; returns PAD_RIGHT and similar flags ORed if it has moved
         ld      [CursorNeedsRefresh],a
         call    CursorRefreshCoordFromTile
         ld      a,e
-        or      a,PAD_DOWN
+        or      a,PADF_DOWN
         ld      e,a
 .down_end:
 
@@ -506,7 +506,7 @@ CursorCheckDragBg_hor:
     ld      a,[joy_pressed]
     and     a,b ; a = want_to_move & ~moved
 
-        bit     PAD_BIT_RIGHT,a
+        bit     PADB_RIGHT,a
         jr      z,.not_right
 
         call    bg_main_scroll_right
@@ -520,7 +520,7 @@ CursorCheckDragBg_hor:
 
 .not_right:
 
-        bit     PAD_BIT_LEFT,a
+        bit     PADB_LEFT,a
         jr      z,.not_left
 
         call    bg_main_scroll_left
@@ -545,7 +545,7 @@ CursorCheckDragBg_ver:
     ld      a,[joy_pressed]
     and     a,b ; a = want_to_move & ~moved
 
-        bit     PAD_BIT_UP,a
+        bit     PADB_UP,a
         jr      z,.not_up
 
         call    bg_main_scroll_up
@@ -559,7 +559,7 @@ CursorCheckDragBg_ver:
 
 .not_up:
 
-        bit     PAD_BIT_DOWN,a
+        bit     PADB_DOWN,a
         jr      z,.not_down
 
         call    bg_main_scroll_down
@@ -585,7 +585,7 @@ CursorHandle::
     ld      b,0 ; has scrolled = 0
     and     a,a
     jr      nz,.skip_movement_hor
-        call    CursorMovePAD_hor
+        call    CursorMovePADF_hor
         call    CursorCheckDragBg_hor
         ld      b,a
 .skip_movement_hor:
@@ -596,7 +596,7 @@ CursorHandle::
     and     a,a
     jr      nz,.skip_movement_ver
         push    bc
-        call    CursorMovePAD_ver
+        call    CursorMovePADF_ver
         call    CursorCheckDragBg_ver
         pop     bc
         or      a,b
@@ -632,7 +632,7 @@ CursorHiddenMove::
     jr      nz,.skip_movement_hor
 
         ld      a,[joy_held]
-        bit     PAD_BIT_RIGHT,a
+        bit     PADB_RIGHT,a
         jr      z,.not_right
 
             call    bg_main_scroll_right
@@ -648,7 +648,7 @@ CursorHiddenMove::
 .not_right:
 
         ld      a,[joy_held]
-        bit     PAD_BIT_LEFT,a
+        bit     PADB_LEFT,a
         jr      z,.not_left
 
             push    bc
@@ -677,7 +677,7 @@ CursorHiddenMove::
     jr      nz,.skip_movement_ver
 
         ld      a,[joy_held]
-        bit     PAD_BIT_UP,a
+        bit     PADB_UP,a
         jr      z,.not_up
 
             push    bc
@@ -696,7 +696,7 @@ CursorHiddenMove::
 .not_up:
 
         ld      a,[joy_held]
-        bit     PAD_BIT_DOWN,a
+        bit     PADB_DOWN,a
         jr      z,.not_down
 
             push    bc

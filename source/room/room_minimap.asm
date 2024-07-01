@@ -366,7 +366,7 @@ InputHandleMinimap:
 
         ; Exit if  B or START are pressed
         ld      a,[joy_pressed]
-        and     a,PAD_B|PAD_START
+        and     a,PADF_B|PADF_START
         jr      z,.end_b_start
             ld      a,1
             ld      [minimap_room_exit],a ; exit

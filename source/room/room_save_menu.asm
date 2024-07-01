@@ -691,7 +691,7 @@ InputHandleSaveMenuMenu:
     jr      nz,.not_clear_data ; if this is not load mode, don't allow this
 
     ld      a,[joy_held]
-    ld      b,PAD_START|PAD_SELECT|PAD_UP|PAD_RIGHT ; Right+Up+Select + Start
+    ld      b,PADF_START|PADF_SELECT|PADF_UP|PADF_RIGHT ; Right+Up+Select + Start
     and     a,b
     cp      a,b
     jr      nz,.not_clear_data
@@ -717,7 +717,7 @@ InputHandleSaveMenuMenu:
     ; Regular commands
 
     ld      a,[joy_pressed]
-    and     a,PAD_START|PAD_A
+    and     a,PADF_START|PADF_A
     jr      z,.not_start_a
 
         ld      a,[save_menu_select_any]
@@ -747,7 +747,7 @@ InputHandleSaveMenuMenu:
 .not_start_a:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.not_b
         ld      a,$FF
         ld      [save_menu_exit_error],a ; set selected banck to error
@@ -759,19 +759,19 @@ InputHandleSaveMenuMenu:
     ; If the user pressed A, B or START this point won't be reached
 
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.not_left
         call    SaveMenuMoveLeft
         jr      .end_left_right
 .not_left:
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_left_right
         call    SaveMenuMoveRight
 .end_left_right:
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         call    SaveMenuClearCursor
         call    SaveMenuMoveUp
@@ -779,7 +779,7 @@ InputHandleSaveMenuMenu:
         jr      .end_up_down
 .not_up:
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.end_up_down
         call    SaveMenuClearCursor
         call    SaveMenuMoveDown
@@ -861,7 +861,7 @@ RoomSaveMenuError: ; always returns -1!
     call    KeyAutorepeatHandle
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.loop
 
     ld      a,$FF ; always returns error!

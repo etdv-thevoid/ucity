@@ -59,14 +59,14 @@ BudgetMenuHandleInput: ; If it returns 1, exit room. If 0, continue
 
     ; Exit if B or START are pressed
     ld      a,[joy_pressed]
-    and     a,PAD_B|PAD_START
+    and     a,PADF_B|PADF_START
     jr      z,.end_b_start
         ld      a,1
         ret ; return 1
 .end_b_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.end_left
         ld      a,[tax_percentage]
         and     a,a
@@ -77,7 +77,7 @@ BudgetMenuHandleInput: ; If it returns 1, exit room. If 0, continue
 .end_left:
 
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_right
         ld      a,[tax_percentage]
         cp      a,TAX_PERCENTAGE_MAX

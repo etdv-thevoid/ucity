@@ -322,16 +322,16 @@ scan_keys::
     ld      [_joy_old],a ; current state = old state
     ld      c,a          ; c = old state
 
-    ld      a,$10
-    ldh     [rP1],a ; select P14
+    ld      a,P1F_GET_DPAD
+    ldh     [rP1],a  ; select P15
     ldh     a,[rP1]
     ldh     a,[rP1] ; wait a few cycles
     cpl             ; complement A
     and     a,$0F   ; get only first 4 bits
     swap    a       ; swap it
     ld      b,a     ; store A in B
-    ld      a,$20
-    ldh     [rP1],a ; select P15
+    ld      a,P1F_GET_BTN
+    ldh     [rP1],a  ; select P14
     ldh     a,[rP1]
     ldh     a,[rP1]
     ldh     a,[rP1]
@@ -351,8 +351,8 @@ scan_keys::
 
     ld      [joy_pressed],a
 
-    ld      a,$00   ; deselect P14 and P15
-    ldh     [rP1],a ; RESET Joypad
+    ld      a,P1F_GET_NONE ; deselect P14 and P15
+    ldh     [rP1],a        ; RESET Joypad
 
     ld      a,[_joy_old]
     ld      b,a ; b = old state

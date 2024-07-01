@@ -748,7 +748,7 @@ StatusBarMenuHandle:: ; ret A = menu selection if the user presses A, $FF if not
 
     ; UP
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         ld      a,[status_menu_selection]
         and     a,a
@@ -765,7 +765,7 @@ StatusBarMenuHandle:: ; ret A = menu selection if the user presses A, $FF if not
 
     ; DOWN
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.not_down
         ld      a,[status_menu_selection]
         cp      a,MENU_NUMBER_ELEMENTS-1
@@ -782,7 +782,7 @@ StatusBarMenuHandle:: ; ret A = menu selection if the user presses A, $FF if not
 
     ; A
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.not_a
         ld      a,[status_menu_selection]
         ret

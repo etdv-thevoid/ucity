@@ -176,7 +176,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
 
         ; Exit if menu is inactive and B or START are pressed
         ld      a,[joy_pressed]
-        and     a,PAD_B|PAD_START
+        and     a,PADF_B|PADF_START
         jr      z,.end_b_start
             ld      a,1
             ret ; return 1
@@ -184,7 +184,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
 
         ; Show menu if A, LEFT or RIGHT are pressed
         ld      a,[joy_pressed]
-        and     a,PAD_A|PAD_LEFT|PAD_RIGHT
+        and     a,PADF_A|PADF_LEFT|PADF_RIGHT
         ret     z ; return 0
 
         LONG_CALL   RoomMinimapHideCursor
@@ -198,7 +198,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
     ; Menu is active, handle
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.end_b
         ; Deactivate
         call    MinimapMenuHide
@@ -208,7 +208,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
 .end_b:
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.end_a
         ; Deactivate and load next map
         call    MinimapMenuHide
@@ -222,7 +222,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
 .end_a:
 
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.end_left
         ld      a,[minimap_menu_selection]
         and     a,a
@@ -233,7 +233,7 @@ MinimapMenuHandleInput:: ; If it returns 1, exit room. If 0, continue
 .end_left:
 
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_right
         ld      a,[minimap_menu_selection]
         cp      a,MINIMAP_SELECTION_MAX

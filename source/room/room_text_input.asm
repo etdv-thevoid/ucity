@@ -284,7 +284,7 @@ TextInputGetSelectedChar: ; returns A = selected char (-1 = End)
 InputHandleTextInputMenu:
 
     ld      a,[joy_pressed]
-    and     a,PAD_START
+    and     a,PADF_START
     jr      z,.not_start
         ld      a,[text_input_ptr]
         and     a,a
@@ -295,7 +295,7 @@ InputHandleTextInputMenu:
 .not_start:
 
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.not_a
         call    TextInputGetSelectedChar ; returns A = selected char (-1 = End)
         cp      a,-1
@@ -313,7 +313,7 @@ InputHandleTextInputMenu:
 .not_a:
 
     ld      a,[joy_pressed]
-    and     a,PAD_B
+    and     a,PADF_B
     jr      z,.not_b
         ld      a,[text_input_ptr]
         and     a,a
@@ -329,7 +329,7 @@ InputHandleTextInputMenu:
     ; If the user pressed A, B or START this point won't be reached
 
     ld      a,[joy_pressed]
-    and     a,PAD_LEFT
+    and     a,PADF_LEFT
     jr      z,.not_left
         call    TextInputClearKeyboardCursor
         call    TextInputMoveLeft
@@ -337,7 +337,7 @@ InputHandleTextInputMenu:
         jr      .end_left_right
 .not_left:
     ld      a,[joy_pressed]
-    and     a,PAD_RIGHT
+    and     a,PADF_RIGHT
     jr      z,.end_left_right
         call    TextInputClearKeyboardCursor
         call    TextInputMoveRight
@@ -345,7 +345,7 @@ InputHandleTextInputMenu:
 .end_left_right:
 
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         call    TextInputClearKeyboardCursor
         call    TextInputMoveUp
@@ -353,7 +353,7 @@ InputHandleTextInputMenu:
         jr      .end_up_down
 .not_up:
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.end_up_down
         call    TextInputClearKeyboardCursor
         call    TextInputMoveDown

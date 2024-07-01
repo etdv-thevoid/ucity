@@ -526,7 +526,7 @@ CityMapCheckBuildBridge:: ; e = x, d = y, c = flag type (road, train, electr)
     pop     bc
     cp      a,c ; TYPE_HAS_xxxx == TYPE_HAS_xxxx | TYPE_FIELD, and we aren't
     jr      nz,.skip0 ; considering bridge tiles here.
-        ld      a,PAD_LEFT
+        ld      a,PADF_LEFT
         or      a,b
         ld      b,a
 .skip0:
@@ -539,7 +539,7 @@ CityMapCheckBuildBridge:: ; e = x, d = y, c = flag type (road, train, electr)
     pop     bc
     cp      a,c
     jr      nz,.skip1
-        ld      a,PAD_RIGHT
+        ld      a,PADF_RIGHT
         or      a,b
         ld      b,a
 .skip1:
@@ -552,7 +552,7 @@ CityMapCheckBuildBridge:: ; e = x, d = y, c = flag type (road, train, electr)
     pop     bc
     cp      a,c
     jr      nz,.skip2
-        ld      a,PAD_UP
+        ld      a,PADF_UP
         or      a,b
         ld      b,a
 .skip2:
@@ -565,7 +565,7 @@ CityMapCheckBuildBridge:: ; e = x, d = y, c = flag type (road, train, electr)
     pop     bc
     cp      a,c
     jr      nz,.skip3
-        ld      a,PAD_DOWN
+        ld      a,PADF_DOWN
         or      a,b
         ld      b,a
 .skip3:
@@ -706,13 +706,13 @@ CityMapCheckBuildBridge:: ; e = x, d = y, c = flag type (road, train, electr)
 
 BRIDGE_CONDITIONS: ; Flags -> detected positions, x increment, y increment
 
-    DB PAD_UP,     0, +1 ; go down
-    DB PAD_DOWN,   0, -1 ; go up
-    DB PAD_LEFT,  +1,  0 ; go right
-    DB PAD_RIGHT, -1,  0 ; go left
+    DB PADF_UP,     0, +1 ; go down
+    DB PADF_DOWN,   0, -1 ; go up
+    DB PADF_LEFT,  +1,  0 ; go right
+    DB PADF_RIGHT, -1,  0 ; go left
 
-    DB PAD_UP|PAD_DOWN,     0, +1 ; Only 1 step. As of now, this kind of bridge
-    DB PAD_RIGHT|PAD_LEFT, +1,  0 ; can't be built because the needed terrain
+    DB PADF_UP|PADF_DOWN,     0, +1 ; Only 1 step. As of now, this kind of bridge
+    DB PADF_RIGHT|PADF_LEFT, +1,  0 ; can't be built because the needed terrain
                                   ; is never generated.
 
     DB 0 ; The rest are invalid (only the first byte ot this element is used)

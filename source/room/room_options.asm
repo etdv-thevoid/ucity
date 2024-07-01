@@ -154,7 +154,7 @@ OptionsMenuHandleInput:
 
     ; Exit if B or START are pressed
     ld      a,[joy_pressed]
-    and     a,PAD_B|PAD_START
+    and     a,PADF_B|PADF_START
     jr      z,.end_b_start
         ld      a,1
         ld      [options_room_exit],a
@@ -163,7 +163,7 @@ OptionsMenuHandleInput:
 
     ; UP
     ld      a,[joy_pressed]
-    and     a,PAD_UP
+    and     a,PADF_UP
     jr      z,.not_up
         ld      a,[options_menu_selection]
         and     a,a
@@ -181,7 +181,7 @@ OptionsMenuHandleInput:
 
     ; DOWN
     ld      a,[joy_pressed]
-    and     a,PAD_DOWN
+    and     a,PADF_DOWN
     jr      z,.not_down
         ld      a,[options_menu_selection]
         cp      a,OPTIONS_MENU_NUMBER_ELEMENTS-1
@@ -199,7 +199,7 @@ OptionsMenuHandleInput:
 
     ; A
     ld      a,[joy_pressed]
-    and     a,PAD_A
+    and     a,PADF_A
     jr      z,.not_a
         ld      a,[options_menu_selection]
         call    OptionsMenuHandleOption
